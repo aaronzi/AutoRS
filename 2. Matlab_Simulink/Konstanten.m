@@ -16,9 +16,9 @@ function c = Konstanten()
     c.d_T = 7e4;                                % Dämpfungsfaktor für den Turm - Luftkraftdämpfung (konstant in erster Näherung)
 
     % ROTORBLATT
-    c.m_Blade = 17740;                          % Masse eines Rotorblattes [kg]
+    c.m_Bla = 17740;                            % Masse eines Rotorblattes [kg]
     c.r_B   = 21.975;                           % Effektive Blattlänge (Blattschwerpunkt) für Modell der Blattdynamik
-    c.m_B   = 0.25*m_Blade;                     % effektive schwingende Blattmasse [kg]
+    c.m_B   = 0.25*17740;                       % effektive schwingende Blattmasse [kg]
     c.k_B   = 40000;                            % Ersatzsteifigkeit für Blatt [N/m]
-    c.d_B   = 2e+04;                            % Dämpfungsfaktor für das Blatt - Luftkraftdämpfung (konstant in erster Näherung)
+    c.d_B   = 2e4;                              % Dämpfungsfaktor für das Blatt - Luftkraftdämpfung (konstant in erster Näherung)
 end
