@@ -1,5 +1,9 @@
 % KONSTANTEN
 function c = Konstanten()
+    % SONSTIGE
+    c.rho = 1.225;
+    c.R = 63.0;
+
     % ANTRIEBSSTRANG
     c.n_g = 97.0;                       	    % Getriebeübersetzungsverhältnis
     c.J_r = 38759.227e3;                        % Rotor Trägheitsmoment [kg m^2]
