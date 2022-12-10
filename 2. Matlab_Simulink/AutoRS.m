@@ -2,12 +2,19 @@
 clear;
 clc;
 
-% KONSTANTEN AUFRUFEN
-global c;
-c = Konstanten();
+% DATEIPFADE HINZUFÜGEN
+addpath('./1. Konstanten/', '2. LookUp-Table\', '3. Simulationen\');
 
-% 1. Setzen der Windturbinen Parameter für den Workspace
-load('CQ_CT_maps.mat')     % load aerodynamic maps CQ and CT (look up tables) of rotor blades
-mdlName = 'AutoRS_Simulation.slx';
-open(mdlName);
-sim(mdlName)
+% KONSTANTEN BERECHNEN
+param_const = Param_Const();
+
+% LOOK-UP-TABLES LADEN
+load('CQ_CT_maps.mat');
+
+% BERECHNUNG LAMBDA_OPT UND CP_MAX
+param_opt = Param_Opt(CQ_entries, lambda_array);
+
+% SIMULATION ÖFFNEN UND STARTEN
+mdlName = 'AutoRs_Simulation.slx';
+open('./3. Simulationen/AutoRS_Simulation.slx');
+sim(mdlName);
