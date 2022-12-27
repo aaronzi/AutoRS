@@ -1,5 +1,5 @@
 # AutoRS
-Belegarbeit zum Modul Automation in Regenerativen Energiesystemen Prof. Dr.-Ing Horst Schulte
+Belegarbeit zum Modul Automation in Regenerativen Energiesystemen Prof. Dr.-Ing. Horst Schulte
 
 ## Übersicht zur Windenergieanlage
 
