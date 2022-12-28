@@ -1,0 +1,61 @@
+\section{Turm- und Blatt-Modell} \label{turm_blatt}
+
+\subsection{Aerodynamik}
+
+\subsection{Modellierung des Turmes und des Blattes}
+
+\begin{figure}[H]
+\centering
+\scalebox{1.0}{
+\begin{tikzpicture}[
+  scale = 1.0,thick,>=triangle 45,
+  spring/.style = {decorate,decoration={zigzag,amplitude=2pt,segment length=4pt}}
+  ]
+  %Raster
+\draw [color=gray!10] [step=1mm] (-2.5cm,1.1cm) grid (2.5cm,-7.5cm);
+\draw [color=gray!30] [step=1cm] (-2.5cm,1.1cm) grid (2.5cm,-7.5cm);
+
+%Blattmodell
+  \node[draw,minimum size=1.5em] (mB) {$3\cdot m_B$};
+  \draw[shorten <=3pt] (mB) -- coordinate (xB) ++( 2,0);
+  \draw[shorten <=3pt] (mB) -- coordinate (f) ++(-2,0);
+  \draw[<-] (f) -- node[left] {$F_T(t)$} ++(0,-1);
+  \draw[->] (xB) -- node[right] {$x_B(t)$} ++(0,1);
+  \draw (mB) -- +(0,-.7) coordinate (cB);
+  \draw (cB) -| +( .7,-.3) coordinate (rB);
+  \draw (cB) -| +(-.7,-.3) coordinate (lB);
+  \draw (rB) -| +( .2,-1) node[right,pos=.75] {$d_B$};
+  \draw (rB) -| +(-.2,-1);
+  \draw (rB) +(-.15,-.5) -- coordinate (dB) +(.15,-.5);
+  \draw[spring] (lB) -- node[left] {$k_B$} +(0,-1);
+  \draw (lB) ++(0,-1) -- ++(0,-.3) coordinate (bB);
+  \draw (dB) |- (bB);
+  \draw (bB -| mB) -- ++(0,-.5) coordinate (gB);
+
+%Turmmodell
+	\node[coordinate] (mT) at (0.0,-4.0) {};
+	\draw[shorten <=9pt] (mT) -- (gB);
+	\node[draw,minimum size=1.5em] at (mT) {$m_T$};
+  	\draw[shorten <=16pt] (mT) -- coordinate (xT) ++( 2,0);
+  	\draw[shorten <=16pt] (mT) -- coordinate (f) ++(-2,0);
+  	\draw[<-] (f) -- node[left] {$F_T(t)$} ++(0,-1);
+  \draw[->] (xT) -- node[right] {$x_T(t)$} ++(0,1);
+  \draw[shorten <=9.0pt] (mT) -- +(0,-.7) coordinate (c);
+  \draw (c) -| +( .7,-.3) coordinate (r);
+  \draw (c) -| +(-.7,-.3) coordinate (l);
+  \draw (r) -| +( .2,-1) node[right,pos=.75] {$d_T$};
+  \draw (r) -| +(-.2,-1);
+  \draw (r) +(-.15,-.5) -- coordinate (d) +(.15,-.5);
+  \draw[spring] (l) -- node[left] {$k_T$} +(0,-1);
+  \draw (l) ++(0,-1) -- ++(0,-.3) coordinate (b);
+  \draw (d) |- (b);
+  \draw (b -| mT) -- ++(0,-.5) coordinate (g);
+  \draw (g) +(-.5,0) -- +(.5,0);
+  \foreach \i in {-1,0,1}
+    \draw (g) ++(\i*.5,0) -- ++(225:.5);
+ 
+\end{tikzpicture}
+}
+\caption{Modell des Turms und der Blätter}
+\label{fig:TurmBlattModell}
+\end{figure}

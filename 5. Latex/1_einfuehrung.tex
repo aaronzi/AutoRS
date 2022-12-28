@@ -1,0 +1,142 @@
+\section{Einführung in die Windenergieanlage} \label{einfuehrung}
+% Aaron
+
+Ziel dieser Arbeit soll es sein, eine drehzahlvariable \SI{5}{MW} Windturbine zu Modellieren, Simulieren und die Regelung umzusetzen. Konkret handelt es sich um eine \textit{NREL}-Turbine, die für den Offshore-Einsatz konzipiert ist.\\
+Dafür sollen folgende Anforderungen umgesetzt werden:
+
+\begin{enumerate}
+    \item Erstellung des mathematischen Modells der Windturbine
+    \item Implementierung des Modells in Matlab/Simulink
+    \item Untergliederung des Modells in die Teilmodelle \texttt{Antriebsstrang}, \texttt{Aerodynamik}, \texttt{Turm- und Blattdynamik}
+    \item Umsetzung eines reduzierten Windturbinen-Modells für den Teil- und Volllastbereich
+    \item Reglerentwurf für alle Arbeitspunkte (über kennfeldbasierte, arbeitspunktabhängige Nachführung der Reglerkoeffizienten)
+\end{enumerate}
+
+Der modellhafte Aufbau einer Windturbine ist nachfolgend (in \autoref{fig:Bild1.1}) dargestellt.
+
+\begin{figure}[H]
+   \centering
+   \begin{pspicture}[showgrid=false](0,0)(14.6,5)
+        \psframe(0,0)(14.6,5)
+        % Rotor
+        \pscircle(2.7,2.5){0.07}
+        
+        \psline(2.4,2.5)(2.63,2.5)
+        \psline(2.46,2.42)(2.46,2.58)
+        \pspolygon(2.4,2.58)(2.4,2.42)(0.6,2.48)(0.6,2.52)
+        
+        \psline(2.73,2.55)(2.86,2.75)
+        \psline(2.76,2.75)(2.89,2.66)
+        \pspolygon(2.78,2.8)(2.93,2.7)(3.88,4.26)(3.84,4.28)
+        
+        \psline(2.73,2.45)(2.86,2.25)
+        \psline(2.76,2.25)(2.89,2.34)
+        \pspolygon(2.78,2.2)(2.93,2.3)(3.88,0.74)(3.84,0.72)
+        
+        % Verbindung Rotor -> Getriebe
+        \psline[linewidth=2pt](2.77,2.5)(6,2.5)
+        
+        % Getriebe
+        \psframe(5.77,1.73)(6.97,2.93)
+        \pscircle[linestyle=dashed](6.3,2.5){0.3}
+        \psdot(6.3,2.5)
+        \pscircle[linestyle=dashed](6.55,2.05){0.2}
+        \psdot(6.55,2.05)
+        \rput(6.35,3.1){\tiny Getriebe}
+        
+        % Verbindung Getriebe -> SG
+        \psline[linewidth=2pt](6.75,2.05)(8,2.05)
+        
+        % SG
+        \pscircle(8.3,2.05){0.3}
+        \pscircle(8.3,2.05){0.37}
+        \rput(8.3,2.05){\small SG}
+        
+        % Verbindung SG -> Umrichter
+        \psline(8.67,2.05)(9.5,2.05)
+        \psline(9,2.15)(8.8,1.95)
+        \psline(9.1,2.15)(8.9,1.95)
+        \psline(9.2,2.15)(9,1.95)
+        
+        % Umrichter
+        \psframe[linestyle=dashed,linecolor=darkgrey](9.4,1.5)(11.8,3)
+        \rput(10.6,1.3){\tiny Umrichter}
+        
+        \psframe(9.5,1.65)(10.3,2.45)
+        \psline(9.52,1.67)(10.28,2.43)
+        \rput(9.9,2.7){\tiny GR}
+        \rput(9.77,2.25){\tiny $3\sim$}
+        \rput(10.07,1.85){\tiny $=$}
+        
+        \psline(10.3,2.05)(10.9,2.05)
+        
+        \psframe(10.9,1.65)(11.7,2.45)
+        \psline(10.92,1.67)(11.68,2.43)
+        \rput(11.3,2.7){\tiny WR}
+        \rput(11.12,2.22){\tiny $=$}
+        \rput(11.42,1.85){\tiny $3\sim$}
+        
+        % Trafo
+        \psline(11.7,2.05)(12.3,2.05)
+        \pscircle(12.6,2.05){0.3}
+        \pscircle(13,2.05){0.3}
+        \psline(13.3,2.05)(13.9,2.05)
+        
+        % Netzleitung
+        \psline(13.9,0.6)(13.9,4.4)
+        \psline(13.8,3)(14,3.2)
+        \psline(13.8,2.9)(14,3.1)
+        \psline(13.8,2.8)(14,3)
+        \psdot(13.9,2.05)
+    \end{pspicture}
+   \caption[Aufbau NREL Windturbine]{Modellhafte Darstellung einer NREL Windturbine}
+   \label{fig:Bild1.1}
+\end{figure} % Modelldarstellung NREL Windturbine
+
+Wie bereits aus den Anforderungen hervorgeht, soll das umzusetzende Modell unterteilt werden. Dabei besitzt jedes Teilmodell eigene Parameter/Konstanten, die in \autoref{tab:Tabelle1.1} aufgezeigt sind.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|lll|}
+        \hline
+        \rowcolor{grey}
+        \textbf{Symbol}          & \textbf{Parameter}                               & \textbf{Wert}                                                         \\ \hline
+        \rowcolor{lightGrey}
+        \multicolumn{3}{|c|}{Antriebsstrang}                                                                                                                \\ \hline
+        $n_{\mathrm{g}}$         & Getriebeübersetzungsverhältnis                   & $97.0$                                                                \\
+        $J_{\mathrm{r}}$         & Rotor Trägheitsmoment                            & $\SI{38759 \cdot 10^{3}}{kg \cdot m^{2}}$                             \\
+        $J_{\mathrm{g}}$         & Generator Trägheitsmoment                        & $\SI{534.1}{kg \cdot m^{2}}$                                          \\
+        $k_{\mathrm{s}}$         & Triebsstrangsteifigkeit bez. auf schnelle Welle  & $867637000 / n_{\mathrm{g}}^{2}$                                      \\
+        $d_{\mathrm{s}}$         & Dämpfungsfaktor d. Triebsstranges                & $6215000 / n_{\mathrm{g}}^{2}$                                        \\ \hline
+        \rowcolor{lightGrey}
+        \multicolumn{3}{|c|}{Turm}                                                                                                                          \\ \hline
+        $m_{\mathrm{Nac}}$       & Gondelmasse                                      & $\SI{240000}{kg}$                                                     \\
+        $m_{\mathrm{Rot}}$       & Rotormasse (Blätter und Narbe)                   & $\SI{11000}{kg}$                                                      \\
+        $m_{\mathrm{Tow}}$       & Turmmasse                                        & $\SI{347460}{kg}$                                                     \\
+        $m_{\mathrm{T}}$         & Ersatzmasse der Windkraftanlage                  & $m_{\mathrm{Nac}} + m_{\mathrm{Rot}} + 0.25 \cdot m_{\mathrm{Tow}}$   \\
+        $k_{\mathrm{T}}$         & Ersatzsteifigkeit des Turmes                     & $\SI{1981900}{N / m}$                                                 \\
+        $d_{\mathrm{T}}$         & Dämpfungsfaktor des Turmes                       & $7 \cdot 10^{4}$                                                      \\ \hline
+        \rowcolor{lightGrey}
+        \multicolumn{3}{|c|}{Rotorblatt}                                                                                                                    \\ \hline
+        $R$                      & Blattradius                                      & $\SI{63}{m}$                                                          \\
+        $m_{\mathrm{Bla}}$       & Masse eines Rotorblattes                         & $\SI{17740}{kg}$                                                      \\
+        $r_{\mathrm{B}}$         & Effektive Blattlänge                             & $\SI{21.975}{m}$                                                      \\
+        $m_{\mathrm{B}}$         & Effektiv schwingende Blattmasse                  & $0.25 \cdot m_{\mathrm{Bla}}$                                         \\
+        $k_{\mathrm{B}}$         & Ersatzsteifigkeit eines Blattes                  & $\SI{40000}{N / m}$                                                   \\
+        $d_{\mathrm{B}}$         & Dämpfungsfaktor eines Blattes                    & $2 \cdot 10^{4}$                                                      \\ \hline
+        \rowcolor{lightGrey}
+        \multicolumn{3}{|c|}{Weitere Parameter}                                                                                                             \\ \hline
+        $\rho$                   & Luftdichte                                       & $\SI{1.225}{kg / m^{3}}$                                              \\ \hline
+    \end{tabular}
+    \caption[Modellparameter]{Modellparameter der NREL Windturbine}
+    \label{tab:Tabelle1.1}
+\end{table}
+
+Ziel soll es sein eine Regelung für den Teillast- und Volllastbetrieb umzusetzen, die auf die in Simulink implementierten (Teil-)Modelle angewendet wird. Als Stellgröße gelten das Generatormoment und der kollektive Pitchwinkel. Dabei sind folgende Systemgrenzen zu berücksichtigen:
+
+\begin{enumerate}
+    \item Stellgrößenbegrenzung des Pitchantriebes von maximal $8^\circ$
+    \item Maximale Narbenauslenkung bei Böen sei $\SI{1.5}{m}$
+    \item Maximale Blattauslenkung an der Spitze sei $\SI{7}{m}$
+    \item Die Rotordrehzahl darf maximal 1.2-fach so groß sein wie die Nenndrehzahl
+\end{enumerate}
