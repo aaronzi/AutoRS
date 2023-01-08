@@ -29,25 +29,8 @@
 %--------------------------------------------------------------------------
 
 % Abkürzungspaket
-\usepackage{acronym}
-
-% Symbolverzeichnis
-\usepackage[symbols,nogroupskip,nonumberlist,sort=use]{glossaries-extra}
-
-% \makenoidxglossaries
-
-\glsxtrnewsymbol[description={Gewichtskraft}]{FG}{\ensuremath{F_{\mathrm{G}}}}
-\glsxtrnewsymbol[description={Gewichtskraft in Bewegungsrichtung}]{FG1}{\ensuremath{F^{'}_{\mathrm{G}}}}
-\glsxtrnewsymbol[description={Bewegungskraft des Schlittens}]{Fa}{\ensuremath{F_{\mathrm{a}}}}
-\glsxtrnewsymbol[description={Pendelkraft}]{FP}{\ensuremath{F_{\mathrm{P}}}}
-\glsxtrnewsymbol[description={Pendelkraft in Bewegungsrichtung}]{FP1}{\ensuremath{F^{'}_{\mathrm{P}}}}
-\glsxtrnewsymbol[description={Reibkraft}]{Ff}{\ensuremath{F_{\mathrm{f}}}}
-\glsxtrnewsymbol[description={Coulombsche Reibung}]{FC}{\ensuremath{F_{\mathrm{C}}}}
-\glsxtrnewsymbol[description={Gesamtkraft}]{Fges}{\ensuremath{F_{\mathrm{ges}}}}
-\glsxtrnewsymbol[description={Pendelmoment}]{MP}{\ensuremath{M_{\mathrm{P}}}}
-\glsxtrnewsymbol[description={Gewichtsmoment}]{MG}{\ensuremath{M_{\mathrm{G}}}}
-\glsxtrnewsymbol[description={Reibmoment}]{Mf}{\ensuremath{M_{\mathrm{f}}}}
-\glsxtrnewsymbol[description={Gesamtmoment}]{Mges}{\ensuremath{M_{\mathrm{ges}}}}
+\usepackage[]{acronym}
+% \usepackage[nohyperlinks]{acronym} % Abkürzungsverzeichnis ohne Klick-Referenz zu den Abkürzungen im Text
 
 % Mathe Pakete
 \usepackage{amsmath}
@@ -86,6 +69,7 @@
 \definecolor{grey}{RGB}{200,200,200}
 \definecolor{lightGrey}{RGB}{230,230,230}
 \definecolor{darkgrey}{RGB}{120,120,120}
+\definecolor{orange}{RGB}{240,120,0}
 
 % Für erweiterte Tabellen
 \usepackage{longtable}
@@ -122,6 +106,8 @@
 
 % Diagramm-/Grafikerstellung
 \usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-coil}
 \usepackage{tikz}
 \usetikzlibrary{patterns,patterns.meta}
 \makeatletter
@@ -363,19 +349,117 @@
 \renewcommand*{\listtablename}{Tabellenverzeichnis}
 \renewcommand*{\tablename}{Tab.}
 \listoftables
-\clearpage
+%\clearpage
 
-%----------Symbolverzeichnis----------------------
-% \printnoidxglossary[type=symbols,style=long,title={Symbolverzeichnis}]
-% \clearpage
+%--------------Symbolverzeichnis------------------
+\section*{Symbolverzeichnis}
+\begin{acronym}[Symbols]
+    \acro{A}        [$A$]                       {Querschnittsfläche}
+    \acro{Ai}       [$A_{\mathrm{i}}$]          {Querschnittfläche an Stelle i}    
+    \acro{A1}       [$A_{\mathrm{1}}$]          {Eintritts- (kontroll-) Fläche einer Strömungsröhre}
+    \acro{A2}       [$A_{\mathrm{2}}$]          {Rotorfläche}
+    \acro{A3}       [$A_{\mathrm{3}}$]          {Austritts- (kontroll-) Fläche einer Strömungsröhre}
+    \acro{c}        [$c$]                       {Anströmgeschwindigkeit}
+    \acro{cA}       [$c_{\mathrm{A}}$]          {Autriebsbeiwert}
+    \acro{cW}       [$c_{\mathrm{W}}$]          {Widerstandbeiwert}
+    \acro{cM}       [$c_{\mathrm{M}}$]          {Momentenbeiwert}
+    \acro{cP}       [$c_{\mathrm{P}}$]          {Leistungsbeiwert}
+    \acro{cPmax}    [$c_{\mathrm{P,max}}$]      {max. Leistungsbeiwert}
+    \acro{cs}       [$c_{\mathrm{s}}$]          {Schubbeiwert}
+    \acro{EW}       [$E_{\mathrm{W}}$]          {Kinetische Energie des Windes}
+    \acro{FA}       [$F_{\mathrm{A}}$]          {Auftriebskraft (am Flügel-/Blattprofil)}
+    \acro{Fres}     [$F_{\mathrm{res}}$]        {resultierende Kraft}
+    \acro{deltaFU}  [$\Delta F_{\mathrm{U}}$]   {anteilige Umfangskraft}
+    \acro{deltaFS}  [$\Delta F_{\mathrm{S}}$]   {anteilige Schubkraft}
+    \acro{FS}       [$F_{\mathrm{S}}$]          {Schubkraft auf den Rotor}
+    \acro{FSA}      [$F_{\mathrm{S,A}}$]        {Schubkraftanteil der Auftriebskraft}
+    \acro{FSW}      [$F_{\mathrm{S,W}}$]        {Schubkraftanteil der Widerstandskraft}
+    \acro{FST}      [$F_{\mathrm{ST}}$]         {Staukraft am Rotor}
+    \acro{FUA}      [$F_{\mathrm{U,A}}$]        {Umfangskraftanteil der Auftriebskraft}
+    \acro{FUW}      [$F_{\mathrm{U,W}}$]        {Umfangskraftanteil der Widerstandskraft}
+    \acro{FW}       [$F_{\mathrm{W}}$]          {Widerstandskraft (am Flügel-/Blattprofil)}
+    \acro{JB}       [$J_{\mathrm{B}}$]          {Massenträgheitsmoment eines Rotorblattes}
+    \acro{JG}       [$J_{\mathrm{G}}$]          {Massenträgheitsmoment des Generators}
+    \acro{JLW}      [$J_{\mathrm{LW}}$]         {Massenträgheitsmoment der Langsamen (Haupt-) Welle}
+    \acro{JN}       [$J_{\mathrm{N}}$]          {Massenträgheitsmoment der Nabe}
+    \acro{JR}       [$J_{\mathrm{R}}$]          {Massenträgheitsmoment des Rotors (= Nabe + Blätter)}
+    \acro{JSW}      [$J_{\mathrm{SW}}$]         {Massenträgheitsmoment der schnellen (Zwischen-) Welle}
+    \acro{MG}       [$M_{\mathrm{G}}$]          {Generatordrehmoment}
+    \acro{MGnenn}   [$M_{\mathrm{G,nenn}}$]     {Generatordrehnennmoment}
+    \acro{PG}       [$P_{\mathrm{G,nenn}}$]     {Generatornennleistung}
+    \acro{nG}       [$n_{\mathrm{G,nenn}}$]     {Generatornenndrehzahl}
+    \acro{MR}       [$M_{\mathrm{R}}$]          {Rotordrehmoment}
+    \acro{MW}       [$M_{\mathrm{W}}$]          {\glqq Wind\grqq{}-drehmoment}
+    \acro{MB}       [$M_{\mathrm{B}}$]          {Blattdrehmoment}
+    \acro{mNac}     [$m_{\mathrm{Nac}}$]        {Gondelmasse}
+    \acro{mRot}     [$m_{\mathrm{Rot}}$]        {Rotormasse (= Nabe + Blätter)}
+    \acro{mTow}     [$m_{\mathrm{Tow}}$]        {Turmmasse}
+    \acro{mT}       [$m_{\mathrm{T}}$]          {Ersatzmasse der gesamten Windkraftanlage}
+    \acro{mBla}     [$m_{\mathrm{Bla}}$]        {Masse eines Rotorblattes}
+    \acro{mB}       [$m_{\mathrm{B}}$]          {Effektiv schwingende Blattmasse}
+    \acro{ks}       [$k_{\mathrm{s}}$]          {Triebsstrangsteifigkeit bezogen auf die schnelle Welle}
+    \acro{kT}       [$k_{\mathrm{T}}$]          {Ersatzsteifigkeit des Turmes}
+    \acro{kB}       [$k_{\mathrm{B}}$]          {Ersatzsteifigkeit eines Blattes}
+    \acro{ds}       [$d_{\mathrm{s}}$]          {Dämpfungsfaktor des Triebsstranges bezogen auf die schnelle Welle}
+    \acro{dT}       [$d_{\mathrm{T}}$]          {Dämpfungsfaktor des Turmes}
+    \acro{dB}       [$d_{\mathrm{B}}$]          {Dämpfungsfaktor eines Blattes}
+    \acro{yT}       [$y_{\mathrm{T}}$]          {Turmverbiegung}
+    \acro{yB}       [$y_{\mathrm{B}}$]          {Blattverbiegung}
+    \acro{m}        [$m$]                       {Luftmasse}
+    \acro{mi}       [$m_{\mathrm{i}}$]          {Luftmasse an Stelle i}
+    \acro{mdot}     [$\dot m$]                  {Luftmassenstrom}
+    \acro{mdoti}    [$\dot{m}_{\mathrm{i}}$]    {Luftmassenstrom an Stelle i}
+    \acro{mdot1}    [$\dot{m}_{\mathrm{1}}$]    {Luftmassenstrom an Stelle 1}
+    \acro{mdot2}    [$\dot{m}_{\mathrm{2}}$]    {Luftmassenstrom an Stelle 2}
+    \acro{mdot3}    [$\dot{m}_{\mathrm{3}}$]    {Luftmassenstrom an Stelle 3}
+    \acro{ng}       [$n_{\mathrm{g}}$]          {Getriebeübersetzung}
+    \acro{nR}       [$n_{\mathrm{R}}$]          {Rotordrehzahl}
+    \acro{PR}       [$P_{\mathrm{R}}$]          {Mechanische Leistung des Rotors}
+    \acro{PW}       [$P_{\mathrm{W}}$]          {Mechanische Leistung des Windes}
+    \acro{r}        [$r$]                       {Effektive Blattlänge}
+    \acro{ri}       [$r_{\mathrm{i}}$]          {Radius an Stelle i}
+    \acro{R}        [$R$]                       {Rotoraußenradius}
+    \acro{u}        [$u$]                       {Bewegungsgeschwindigkeit}
+    \acro{u'}       [$u^{'}$]                   {relative Bewegungsgeschwindigkeit}
+    \acro{v}        [$v$]                       {Hauptwindgeschwindigkeitsrichtung des Windvektors $\underline v$}
+    \acro{vi}       [$v_{\mathrm{i}}$]          {Windgeschwindigkeit an Stelle i}
+    \acro{vdoti}    [$\dot{v}_{\mathrm{i}}$]    {Windgeschwindigkeitsänderung an Stelle i}
+    \acro{v1}       [$v_{\mathrm{1}}$]          {Windgeschwindigkeit vor Rotorebene}
+    \acro{v2}       [$v_{\mathrm{2}}$]          {Windgeschwindigkeit in der Rotorebene}
+    \acro{v3}       [$v_{\mathrm{3}}$]          {Windgeschwindigkeit hinter der Rotorebene}
+    \acro{z}        [$z$]                       {Anzahl der Rotorblätter eines Rotors}
+    \acro{ThetaP}   [$\Theta_{\mathrm{P}}$]     {Pitchwinkel}
+    \acro{lambda}   [$\lambda$]                 {Schnelllaufzahl}
+    \acro{rho}      [$\rho$]                    {Luftdichte}
+    \acro{rhoi}     [$\rho_{\mathrm{i}}$]       {Luftdichte an Volumenstelle i}
+    \acro{rho1}     [$\rho_{\mathrm{1}}$]       {Luftdichte an Volumenstelle 1}
+    \acro{rho2}     [$\rho_{\mathrm{2}}$]       {Luftdichte an Volumenstelle 2}
+    \acro{rho3}     [$\rho_{\mathrm{3}}$]       {Luftdichte an Volumenstelle 3}
+    \acro{omega}    [$\omega$]                  {Winkelgeschwindigkeit}
+    \acro{omegaG}   [$\omega_{\mathrm{G}}$]     {Generatorwinkelgeschwindigkeit}
+    \acro{omegaR}   [$\omega_{\mathrm{R}}$]     {Ro\-tor\-win\-kel\-ge\-schwin\-dig\-keit}
+    \acro{omegadot} [$\dot \omega$]             {Winkelbeschleunigung}
+    \acro{phiG}     [$\varphi_{\mathrm{G}}$]    {Generator Winkel}
+    \acro{phiR}     [$\varphi_{\mathrm{R}}$]    {Rotor Winkel}
+    \acro{phiRtilde}[$\tilde{\varphi}_{\mathrm{R}}$]    {Rotor Winkel bezogen auf die Generatorseite des Getriebes}
+    \acro{pi}       [$\pi$]                     {Kreiszahl}
+    \acro{pST}      [$p_{\mathrm{ST}}$]         {Staudruck}
+    \acro{cT}       [$c_{\mathrm{T}}$]          {Schubkraftbeiwert}
+    \acro{alpha}    [$\alpha$]                  {Anstellwinkel}
+    \acro{alphaopt} [$\alpha_{\mathrm{opt}}$]   {optimaler Anstellwinkel}
+    \acro{tflug}    [$t_{\mathrm{Flug}}$]       {Tiefe eines Tragflügels}
+    \acro{bflug}    [$t_{\mathrm{Flug}}$]       {Breite eines Tragflügels}
+    \acro{eps}      [$\epsilon$]                {Gleitzahl}
+    \acro{gamma}    [$\gamma$]                  {Anströmwinkel}
+    \acro{beta}     [$\beta$]                   {Bauwinkel}
+    \end{acronym}
+\clearpage
 
 %---------Kapitel/Text----------------------------
 
 \include{1_einfuehrung}
 
 \include{2_theo_grundl}
-
-\include{3_modellierung_umrichter}
 
 \include{4_modellierung_antriebsstrang}
 
