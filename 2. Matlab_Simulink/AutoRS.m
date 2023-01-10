@@ -4,7 +4,7 @@ clc;
 
 %% DATEIPFADE HINZUFÜGEN
 addpath('./1. Konstanten/', './2. LookUp-Table/', './3. Simulationen/', './4. Linearisierung/', './5. Validierung/'); % Hauptverzeichnisse
-addpath('./5. Validierung/1. Antriebsstrang/'); % Validierungsverzeichnisse
+addpath('./5. Validierung/1. Antriebsstrang/', './5. Validierung/2. Turm und Blatt/'); % Validierungsverzeichnisse
 
 %% KONSTANTEN BERECHNEN
 global param_const;

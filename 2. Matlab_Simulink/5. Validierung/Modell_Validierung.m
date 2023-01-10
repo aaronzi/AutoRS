@@ -5,3 +5,8 @@ Winkelgeschwindigkeiten();
 
 % Wellentorsion
 Wellentorsion();
+
+%% Turm- und Blattmodell
+
+% Auslenkungen
+Auslenkungen();

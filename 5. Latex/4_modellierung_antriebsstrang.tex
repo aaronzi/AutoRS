@@ -153,11 +153,37 @@ Somit kann der Antriebsstrang abschließend modelliert werden zu
    \label{eq:Gleichung4.10}
    \boxed{\acs{JG} \cdot \ddot{\varphi}_{\mathrm{G}} - \acs{ds} \cdot \left( \dot\varphi_{\mathrm{G}} - \acs{ng} \cdot \tilde{\dot\varphi}_{\mathrm{R}}\right) - \acs{ks} \cdot \left( \varphi_{\mathrm{G}} - \acs{ng} \cdot \tilde{\varphi}_{\mathrm{G}}\right) - \acs{MG} = 0}.
 \end{equation}
+\clearpage
 
 \subsection{Simulative Modellverifikation des Antriebsstranges}
 
-In diesem Unterkapitel wird das zuvor entwickelte Modell in Simulink implementiert und getestet. Auf eine Vollständige Verifikation muss an dieser Stelle jedoch verzichtet werden, da diese nicht losgelöst von den anderen Teilmodellen stattfinden kann. Geprüft wird jedoch, inwiefern einer Torsion der Welle Auftritt, wenn sich das \acl{MG} \bzw \acl{MR} sprunghaft ändert.
+In diesem Unterkapitel wird das zuvor entwickelte Modell in Simulink implementiert und getestet. Auf eine Vollständige Verifikation wird an dieser Stelle jedoch verzichtet, da diese erst nach der Integration in das Gesamtsystem (mit allen anderen Teilmodellen) erfolgen kann. Geprüft wird jedoch, wie sich die Winkelgeschwindigkeiten des Rotors und des Generators nach einer sprunghaften Anregung verhalten. Ebenfalls verifiziert wird, inwiefern eine Torsion der Antriebswelle auftritt, wenn sich das \acl{MG} und das \acl{MR} sprunghaft zeitversetzt ändern. \\
 
-% Bild aus Simulink zur Blockstruktur
+\begin{figure}[H]
+   \centering
+   \fbox{\includegraphics[width=1.0\textwidth]{Bilder/Kapitel 4/Blockstruktur_Antriebsstrang.pdf}}
+   \caption[Antriebsstrang Simulink]{Simulink Blockstruktur des Antriebsstranges der WEA}
+   \label{fig:Bild4.3}
+\end{figure}
 
-% Bild aus Matlab mit den geplotteten Ergebniswerten zur Wellentorsion (die findest du doch eh nicht hehe)
+\autoref{fig:Bild4.3} zeigt die Blockstruktur, welche in Simulink umgesetzt wurde. Der Funktionsblock in der Mitte der Abbildung enthält die Modellgleichungen, welche zuvor in \autoref{eq:Gleichung4.9} und \autoref{eq:Gleichung4.10} hergeleitet wurden. Eingangsseitig wird ein Sprung von \acs{MG} \bzw \acs{MR} eingeprägt. Ersterer setzt nach \SI{15}{s} ein, Zweiterer bereits nach \SI{5}{s}. Ausgangsseitig werden durch die Nutzung von Integratoren die Winkelgeschwindigkeiten \acs{omegaR} und \acs{omegaG} zurückgegeben. Für die Modellverifikation wurde noch ein weiterer Ausgang hinzugefügt, welcher die Differenz des \ac{phiR} und des \ac{phiG} bereitstellt. \\
+
+In \autoref{fig:Bild4.4} ist klar zu erkennen, dass durch die Einprägung des Momentensprunges auf den Rotor die Winkelgeschwindigkeit der Welle annähernd linear ansteigt. Dies zeigt sich sowohl auf Seiten des Rotors als auch auf Seiten des Generators. Der Kurvenverlauf beider Winkelgeschwindigkeiten ist annähernd identisch. Der Unterschied um zwei Zehnerpotenzen ergibt sich aus der \acf{ng}, welche bei \ca 100 (97) liegt.\\
+Der generatorseitige Momentensprung zeigt sich in \autoref{fig:Bild4.4} besonders gut in der Betrachtung der \ac{dotphiG}. Es kommt zu einem Schwingvorgang, der nach etwas über \SI{5}{s} wieder ausgeglichen ist. Durch die Elastizität der Welle ist der Momentensprung am Generator rotorseitig abgedämpft. Die \ac{dotphiR} schwing nur leicht.
+
+\begin{figure}[H]
+   \centering
+   \fbox{\includegraphics[width=0.76\textwidth]{Bilder/Kapitel 4/Winkelgeschwindigkeiten.pdf}}
+   \caption[Winkelgeschwindigkeiten Antriebsstrang]{Visualisierung der Winkelgeschwindigkeit des Rotors und des Generators nach zeitversetzter Sprunganregung}
+   \label{fig:Bild4.4}
+\end{figure}
+
+\autoref{fig:Bild4.5} zeigt die Differenz zwischen Rotorwinkel (\acs{phiR}) und Generatorwinkel (\ac{phiG}). Diese gibt eine Aussage darüber, inwiefern es zu einer Torsion der Antriebswelle kommt. Zu erkennen ist, dass nach \SI{5}{s} eine erste Torsion auftritt, die sich nach kurzem Schwingen auf einen stationären Wert von rund einem Millionstel eines Grades einpegelt. Nach dem generatorseitigen Momentensprung (bei \SI{15}{s} kommt es erneut zu einem Schwingvorgang in der Wellentorsion. Da das eingeprägte Moment signifikant größer ist, ist die Schwingungsamplitude ebenfalls deutlich größer als zuvor beim rotorseitigen Momentensprung. Nach \ca \SI{10}{s} ist auch dieser Schwingvorgang abgeschlossen und ein stationärer Endwert von rund einem Einhunderttausendstel Grad wird erreicht. \\
+Es kann zusammenfassend argumentiert werden, dass die Simulationsergebnisse plausibel und hinreichend genau sind, um das Antriebsstrangmodell als Teilmodell der Simulation und Regelung der Windenergieanlage einsetzen zu können.
+
+\begin{figure}[H]
+   \centering
+   \fbox{\includegraphics[width=0.76\textwidth]{Bilder/Kapitel 4/Wellentorsion.pdf}}
+   \caption[Wellentorsion Antriebsstrang]{Visualisierung der Wellentorsion des Antriebsstranges nach zeitversetzter Sprunganregung}
+   \label{fig:Bild4.5}
+\end{figure}
