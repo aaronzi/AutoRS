@@ -5,7 +5,7 @@ function Auslenkungen()
     % Simulationskonstanten setzen
     F_s_final = (1/2)*param_const.rho*param_const.R^2*pi*0.8*10^2;
 
-    % M_g und M_r als Eingänge der Simulation setzen
+    % F_s als Eingang der Simulation setzen
     assignin('base','F_s_final',F_s_final);
 
     % Aufruf der Simulation

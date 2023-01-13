@@ -19,8 +19,8 @@ param_opt = Param_Opt(CQ_entries, lambda_array);
 
 %% LINEARISIERUNGSKOEFFIZIENTEN
 v_Test = 12;
-omega_r_Test = 12.1/60;
-theta_Test = 4;
+omega_r_Test = 12.1/60*2*pi;
+theta_Test = deg2rad(4);
 [k_v, k_omega_r, k_theta] = Linearisierungskoeffizienten(v_Test, omega_r_Test, theta_Test, param_const);
 
 
