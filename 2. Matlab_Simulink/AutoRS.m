@@ -25,6 +25,6 @@ theta_Test = deg2rad(4);
 
 
 %% SIMULATION ÖFFNEN UND STARTEN
-% mdlName = 'AutoRs_Simulation.slx';
-% open('./3. Simulationen/AutoRS_Simulation.slx');
-% sim(mdlName);
+ mdlName = 'AutoRs_Simulation.slx';
+ open('./3. Simulationen/AutoRS_Simulation.slx');
+ sim(mdlName);
