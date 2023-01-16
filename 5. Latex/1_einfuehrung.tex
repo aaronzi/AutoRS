@@ -103,30 +103,31 @@ Wie bereits aus den Anforderungen hervorgeht, soll das umzusetzende Modell unter
         \textbf{Symbol}          & \textbf{Parameter}                               & \textbf{Wert}                                                         \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Antriebsstrang}                                                                                                                \\ \hline
-        $n_{\mathrm{g}}$         & Getriebeübersetzungsverhältnis                   & $97.0$                                                                \\
-        $J_{\mathrm{r}}$         & Rotor Trägheitsmoment                            & $\SI{38759 \cdot 10^{3}}{kg \cdot m^{2}}$                             \\
-        $J_{\mathrm{g}}$         & Generator Trägheitsmoment                        & $\SI{534.1}{kg \cdot m^{2}}$                                          \\
-        $k_{\mathrm{s}}$         & Triebsstrangsteifigkeit bez. auf schnelle Welle  & $867637000 / n_{\mathrm{g}}^{2}$                                      \\
-        $d_{\mathrm{s}}$         & Dämpfungsfaktor d. Triebsstranges                & $6215000 / n_{\mathrm{g}}^{2}$                                        \\ \hline
+        \acs{ng}                 & Getriebeübersetzungsverhältnis                   & $97.0$                                                                \\
+        \acs{JR}                 & Rotor Trägheitsmoment                            & $\SI{38759 \cdot 10^{3}}{kg \cdot m^{2}}$                             \\
+        \acs{JG}                 & Generator Trägheitsmoment                        & $\SI{534.1}{kg \cdot m^{2}}$                                          \\
+        \acs{ks}                 & Triebsstrangsteifigkeit bez. auf schnelle Welle  & $867637000 / n_{\mathrm{g}}^{2}$                                      \\
+        \acs{ds}                 & Dämpfungsfaktor d. Triebsstranges                & $6215000 / n_{\mathrm{g}}^{2}$                                        \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Turm}                                                                                                                          \\ \hline
-        $m_{\mathrm{Nac}}$       & Gondelmasse                                      & $\SI{240000}{kg}$                                                     \\
-        $m_{\mathrm{Rot}}$       & Rotormasse (Blätter und Narbe)                   & $\SI{11000}{kg}$                                                      \\
-        $m_{\mathrm{Tow}}$       & Turmmasse                                        & $\SI{347460}{kg}$                                                     \\
-        $m_{\mathrm{T}}$         & Ersatzmasse der Windkraftanlage                  & $m_{\mathrm{Nac}} + m_{\mathrm{Rot}} + 0.25 \cdot m_{\mathrm{Tow}}$   \\
-        $k_{\mathrm{T}}$         & Ersatzsteifigkeit des Turmes                     & $\SI{1981900}{N / m}$                                                 \\
-        $d_{\mathrm{T}}$         & Dämpfungsfaktor des Turmes                       & $7 \cdot 10^{4}$                                                      \\ \hline
+        \acs{mNac}               & Gondelmasse                                      & $\SI{240000}{kg}$                                                     \\
+        \acs{mRot}               & Rotormasse (Blätter und Narbe)                   & $\SI{11000}{kg}$                                                      \\
+        \acs{mTow}               & Turmmasse                                        & $\SI{347460}{kg}$                                                     \\
+        \acs{mT}                 & Ersatzmasse der Windkraftanlage                  & $m_{\mathrm{Nac}} + m_{\mathrm{Rot}} + 0.25 \cdot m_{\mathrm{Tow}}$   \\
+        \acs{kT}                 & Ersatzsteifigkeit des Turmes                     & $\SI{1981900}{N / m}$                                                 \\
+        \acs{dT}                 & Dämpfungsfaktor des Turmes                       & $7 \cdot 10^{4}$                                                      \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Rotorblatt}                                                                                                                    \\ \hline
-        $R$                      & Blattradius                                      & $\SI{63}{m}$                                                          \\
-        $m_{\mathrm{Bla}}$       & Masse eines Rotorblattes                         & $\SI{17740}{kg}$                                                      \\
-        $r_{\mathrm{B}}$         & Effektive Blattlänge                             & $\SI{21.975}{m}$                                                      \\
-        $m_{\mathrm{B}}$         & Effektiv schwingende Blattmasse                  & $0.25 \cdot m_{\mathrm{Bla}}$                                         \\
-        $k_{\mathrm{B}}$         & Ersatzsteifigkeit eines Blattes                  & $\SI{40000}{N / m}$                                                   \\
-        $d_{\mathrm{B}}$         & Dämpfungsfaktor eines Blattes                    & $2 \cdot 10^{4}$                                                      \\ \hline
+        \acs{R}                  & Rotoraußenradius                                 & $\SI{63}{m}$                                                          \\
+        \acs{mBla}               & Masse eines Rotorblattes                         & $\SI{17740}{kg}$                                                      \\
+        \acs{r}                  & Effektive Blattlänge                             & $\SI{21.975}{m}$                                                      \\
+        \acs{mB}                 & Effektiv schwingende Blattmasse                  & $0.25 \cdot m_{\mathrm{Bla}}$                                         \\
+        \acs{kB}                 & Ersatzsteifigkeit eines Blattes                  & $\SI{40000}{N / m}$                                                   \\
+        \acs{dB}                 & Dämpfungsfaktor eines Blattes                    & $2 \cdot 10^{4}$
+                                \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Weitere Parameter}                                                                                                             \\ \hline
-        $\rho$                   & Luftdichte                                       & $\SI{1.225}{kg / m^{3}}$                                              \\ \hline
+        \acs{rho}                & Luftdichte                                       & $\SI{1.225}{kg / m^{3}}$                                              \\ \hline
     \end{tabular}
     \caption[Modellparameter]{Modellparameter der NREL Windturbine}
     \label{tab:Tabelle1.1}
