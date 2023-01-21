@@ -12,17 +12,21 @@ param_const = Param_Const();
 
 %% LOOK-UP-TABLES LADEN
 load('CQ_CT_maps.mat');             % WEA Kennfelder (cM & cT)
-load('kpw_II_array.mat');           % kpw_II_array
-load('kpw_III_array.mat');          % kpw_III_array
-load('kiw_II_array.mat');           % kiw_II_array
-load('kiw_III_array.mat');          % kiw_III_array
+load('k_omega_r_II.mat');           % kiz_III_array
+load('k_omega_r_III.mat');          % kiz_III_array
+load('k_theta_III.mat');          % kiz_III_array
+%load('kpw_II_array.mat');           % kpw_II_array
+%load('kpw_III_array.mat');          % kpw_III_array
+%load('kiw_II_array.mat');           % kiw_II_array
+%load('kiw_III_array.mat');          % kiw_III_array
 load('kpz_II_array.mat');           % kpz_II_array
 load('kpz_III_array.mat');          % kpz_III_array
 load('kiz_II_array.mat');           % kiz_II_array
 load('kiz_III_array.mat');          % kiz_III_array
-load('theta_array.mat');            % theta_array
-load('M_G_array.mat');              % M_G_array
- 
+load('theta_array_III.mat');        % theta_array_III
+load('M_G_array_II.mat');           % M_G_array_II 
+load('M_G_array_III.mat');          % M_G_array_III
+
 %% BERECHNUNG LAMBDA_OPT UND CP_MAX
 global param_opt;
 param_opt = Param_Opt(CQ_entries, lambda_array);
@@ -34,8 +38,10 @@ param_opt = Param_Opt(CQ_entries, lambda_array);
 %{
 open('./3. Simulationen/Berechnung_Generatormoment.slx');
 SimOut = sim('Berechnung_Generatormoment.slx');
-M_G_array = SimOut.M_G.Data;
-save(fullfile('2. LookUp-Table/', 'M_G_array.mat'), 'M_G_array');
+M_G_array_II = SimOut.M_G.Data(1:3);
+M_G_array_III = SimOut.M_G.Data(4:6);
+save(fullfile('2. LookUp-Table/', 'M_G_array_II.mat'), 'M_G_array_II');
+save(fullfile('2. LookUp-Table/', 'M_G_array_III.mat'), 'M_G_array_III');
 %}
 
 %% SIMULATION ÖFFNEN UND STARTEN

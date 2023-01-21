@@ -4,10 +4,13 @@ function Reglerkoeffizienten(param_const)
     v = [9, 10, 11, 12, 18, 25];                                    % mögliche Windgeschwindigkeiten (selbst festgelegt)
     omega_r = 12.1/60*2*pi;                                         % konstante Winkelgeschwindigkeit [1/s]
     theta_array = deg2rad([0, 0, 0, 4, 15, 22]);                          % Pitchwinkel für OTLB und VLB    
-    
+    theta_array_II = theta_array(1:3);
+    theta_array_III = theta_array(4:6);
+
     % ERGEBNISMATRIZEN
     % OTLB
     k_linear_OTLB = [];
+    k_omega_r_II = [];
     kpw_II_array = [];
     kiw_II_array = [];
     kpz_II_array = [];
@@ -15,6 +18,8 @@ function Reglerkoeffizienten(param_const)
 
     % VLB
     k_linear_VLB  = [];
+    k_omega_r_III = [];
+    k_theta_III = [];
     kpw_III_array = [];
     kiw_III_array = [];
     kpz_III_array = [];
@@ -53,6 +58,11 @@ function Reglerkoeffizienten(param_const)
         
         % Ergebnisse für k_v, k_omega_r und k_theta können verglichen werden mit Skript 10 Seite 76    
     end
+    
+    % LINEARISIERUNGSKOEFFIZIENTEN
+    k_omega_r_II = k_linear_OTLB(2, :);
+    k_omega_r_III = k_linear_VLB(2, :);
+    k_theta_III = k_linear_VLB(3, :);
 
     % REGLERKOEFFIZIENTEN
     % oberere Teillastbereich
@@ -72,13 +82,17 @@ function Reglerkoeffizienten(param_const)
     end
 
     % ERGEBNISSE SPEICHERN
-    save(fullfile('2. LookUp-Table/', 'kpw_II_array.mat'), 'kpw_II_array');
-    save(fullfile('2. LookUp-Table/', 'kpw_III_array.mat'), 'kpw_III_array');
-    save(fullfile('2. LookUp-Table/', 'kiw_II_array.mat'), 'kiw_II_array');
-    save(fullfile('2. LookUp-Table/', 'kiw_III_array.mat'), 'kiw_III_array');
+    % save(fullfile('2. LookUp-Table/', 'kpw_II_array.mat'), 'kpw_II_array');
+    % save(fullfile('2. LookUp-Table/', 'kpw_III_array.mat'), 'kpw_III_array');
+    % save(fullfile('2. LookUp-Table/', 'kiw_II_array.mat'), 'kiw_II_array');
+    % save(fullfile('2. LookUp-Table/', 'kiw_III_array.mat'), 'kiw_III_array');
     save(fullfile('2. LookUp-Table/', 'kpz_II_array.mat'), 'kpz_II_array');
     save(fullfile('2. LookUp-Table/', 'kpz_III_array.mat'), 'kpz_III_array');
     save(fullfile('2. LookUp-Table/', 'kiz_II_array.mat'), 'kiz_II_array');
     save(fullfile('2. LookUp-Table/', 'kiz_III_array.mat'), 'kiz_III_array');
-    save(fullfile('2. LookUp-Table/', 'theta_array.mat'), 'theta_array');
+    save(fullfile('2. LookUp-Table/', 'theta_array_II.mat'), 'theta_array_II');
+    save(fullfile('2. LookUp-Table/', 'theta_array_III.mat'), 'theta_array_III');
+    save(fullfile('2. LookUp-Table/', 'k_omega_r_II.mat'), 'k_omega_r_II');
+    save(fullfile('2. LookUp-Table/', 'k_omega_r_III.mat'), 'k_omega_r_III');
+    save(fullfile('2. LookUp-Table/', 'k_theta_III.mat'), 'k_theta_III');
 end
