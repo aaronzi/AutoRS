@@ -2,12 +2,15 @@
 function param_const = Param_Const()
     % SONSTIGE
     param_const.rho = 1.225;                                % Luftdichte [kg/m³]
-
+    param_const.D = 0.55;                                   % Dämpfung
+    param_const.T_Aus = 2.5;  
+    param_const.omega_0 = 4.189;                                           
+    
     % ANTRIEBSSTRANG
     param_const.n_g = 97.0;                       	        % Getriebeübersetzungsverhältnis
     param_const.J_r = 38759.227e3;                          % Rotor Trägheitsmoment [kg*m²]
     param_const.J_g = 534.1;                                % Generator Trägheitsmoment [kg*m²]
-    param_const.k_s = 867637000/((97.0)^2);                 % Triebstrangsteifigkeit bezogen auf schnelle Welle 
+    param_const.k_s = 867637000/((97.0)^2);                 % Triebstrangsteifigkeit bezogen auf schnelle Welle [N/m]
     param_const.d_s = 6215000/((97.0)^2);                   % Dämpfungsfaktor Triebstrang bezogen auf schnelle Welle
 
     % TURM
@@ -25,4 +28,7 @@ function param_const = Param_Const()
     param_const.m_B   = 0.25*17740;                         % effektive schwingende Blattmasse [kg]
     param_const.k_B   = 40000;                              % Ersatzsteifigkeit für Blatt [N/m]
     param_const.d_B   = 2e4;                                % Dämpfungsfaktor für das Blatt - Luftkraftdämpfung (konstant in erster Näherung)
+
+    % GESAMTTRÄGHEIT
+    param_const.J = 38759.227e3 + 97.0^2*534.1;             % Gesamtmassenträgheit [kg*m^2]
 end
