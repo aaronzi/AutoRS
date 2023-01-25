@@ -10,7 +10,7 @@ function param_const = Param_Const()
     param_const.n_g = 97.0;                       	        % Getriebeübersetzungsverhältnis
     param_const.J_r = 38759.227e3;                          % Rotor Trägheitsmoment [kg*m²]
     param_const.J_g = 534.1;                                % Generator Trägheitsmoment [kg*m²]
-    param_const.k_s = 867637000/((97.0)^2);                 % Triebstrangsteifigkeit bezogen auf schnelle Welle 
+    param_const.k_s = 867637000/((97.0)^2);                 % Triebstrangsteifigkeit bezogen auf schnelle Welle [N/m]
     param_const.d_s = 6215000/((97.0)^2);                   % Dämpfungsfaktor Triebstrang bezogen auf schnelle Welle
 
     % TURM
