@@ -82,10 +82,10 @@ function Reglerkoeffizienten(param_const)
     end
 
     % ERGEBNISSE SPEICHERN
-    % save(fullfile('2. LookUp-Table/', 'kpw_II_array.mat'), 'kpw_II_array');
-    % save(fullfile('2. LookUp-Table/', 'kpw_III_array.mat'), 'kpw_III_array');
-    % save(fullfile('2. LookUp-Table/', 'kiw_II_array.mat'), 'kiw_II_array');
-    % save(fullfile('2. LookUp-Table/', 'kiw_III_array.mat'), 'kiw_III_array');
+    save(fullfile('2. LookUp-Table/', 'kpw_II_array.mat'), 'kpw_II_array');
+    save(fullfile('2. LookUp-Table/', 'kpw_III_array.mat'), 'kpw_III_array');
+    save(fullfile('2. LookUp-Table/', 'kiw_II_array.mat'), 'kiw_II_array');
+    save(fullfile('2. LookUp-Table/', 'kiw_III_array.mat'), 'kiw_III_array');
     save(fullfile('2. LookUp-Table/', 'kpz_II_array.mat'), 'kpz_II_array');
     save(fullfile('2. LookUp-Table/', 'kpz_III_array.mat'), 'kpz_III_array');
     save(fullfile('2. LookUp-Table/', 'kiz_II_array.mat'), 'kiz_II_array');
