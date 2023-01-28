@@ -2,9 +2,12 @@
 function param_const = Param_Const()
     % SONSTIGE
     param_const.rho = 1.225;                                % Luftdichte [kg/m³]
-    param_const.D = 0.55;                                   % Dämpfung
-    param_const.T_Aus = 17;  
-    param_const.omega_0 = 4.189;                                           
+    % param_const.D = 0.55;                                  % Dämpfung
+    param_const.T_Aus = 17;                                 % Ausregelzeit [s]
+    % param_const.omega_0 = 4.189;
+    param_const.omega_r_Nenn = 12.1/60*2*pi;                % Nennwinkelgeschwindigkeit [rad/s]
+    param_const.v_krit = 25;                                % kritische Windgeschwindigkeit [m/s]
+    param_const.M_G_Nenn = 4.068060275635492e+04;           % Nenndrehmoment [Nm] für P = 5MW        
     
     % ANTRIEBSSTRANG
     param_const.n_g = 97.0;                       	        % Getriebeübersetzungsverhältnis
@@ -29,6 +32,6 @@ function param_const = Param_Const()
     param_const.k_B   = 40000;                              % Ersatzsteifigkeit für Blatt [N/m]
     param_const.d_B   = 2e4;                                % Dämpfungsfaktor für das Blatt - Luftkraftdämpfung (konstant in erster Näherung)
 
-    % GESAMTTRÄGHEIT
+    % GESAMTMASSENTRÄGHEIT
     param_const.J = 38759.227e3 + 97.0^2*534.1;             % Gesamtmassenträgheit [kg*m^2]
 end
