@@ -11,7 +11,7 @@ global param_const;
 param_const = Param_Const();
 
 %% LOOK-UP-TABLES LADEN
-load('CQ_CT_maps.mat');             % WEA Kennfelder (cM & cT)
+ load('CQ_CT_maps.mat');             % WEA Kennfelder (cM & cT)
 load('k_omega_r_II.mat');           % kiz_III_array
 load('k_omega_r_III.mat');          % kiz_III_array
 load('k_theta_III.mat');            % kiz_III_array
@@ -32,7 +32,7 @@ global param_opt;
 param_opt = Param_Opt(CQ_entries, lambda_array);
 
 %% LINEARISIERUNGS- UND REGLERKOEFFIZIENTEN
-% Reglerkoeffizienten(param_const);
+%Reglerkoeffizienten(param_const);
 
 %% GENERATORMOMENT BERECHNEN
 %{
