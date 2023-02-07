@@ -1,6 +1,6 @@
 function [windDataTimeseries] = Windgenerator(windTyp,v,v_mean,gust_nr,turb_nr)
     %% Laden der Winddaten
-    cd '5. Validierung/3. Winde'
+    cd '5. Validierung'/'3. Reglervalidierung'/Winde/
     
     gust_data = load('gust_data.mat').gust_data;
     % load gust_data_single_gusts.mat
@@ -10,6 +10,7 @@ function [windDataTimeseries] = Windgenerator(windTyp,v,v_mean,gust_nr,turb_nr)
     % load TurbWind_12ms_grid25.mat
     % load turb_data_lowwind.mat
     
+    cd ..
     cd ..
     cd ..
     

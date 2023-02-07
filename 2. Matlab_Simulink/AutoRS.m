@@ -3,9 +3,10 @@ clear;
 clc;
 
 %% DATEIPFADE HINZUFÜGEN
-addpath('./1. Konstanten/', './2. LookUp-Table/', './3. Simulationen/', './4. Reglerkoeffizienten/', './5. Validierung/');  % Hauptverzeichnisse
-addpath('./6. Kennfelder-Plots/');                                                                                          % Hauptverzeichnisse
-addpath('./5. Validierung/1. Antriebsstrang/', './5. Validierung/2. Turm und Blatt/', './5. Validierung/3. Winde/');        % Validierungsverzeichnisse
+addpath('./1. Konstanten/', './2. LookUp-Table/', './3. Simulationen/', './4. Reglerkoeffizienten/', './5. Validierung/');          % Hauptverzeichnisse
+addpath('./6. Kennfelder-Plots/');                                                                                                  % Hauptverzeichnisse
+addpath('./5. Validierung/1. Antriebsstrang/', './5. Validierung/2. Turm und Blatt/', './5. Validierung\3. Reglervalidierung\');    % Validierungsverzeichnisse
+addpath('./5. Validierung/3. Reglervalidierung/Winde/')                                                                             % Validierungsverzeichnisse
 
 %% KONSTANTEN BERECHNEN
 global param_const;
@@ -46,7 +47,6 @@ load('kiw_II_array.mat');           % kiw_II_array
 load('kiw_III_array.mat');          % kiw_III_array
 load('M_G_OTLB.mat');               % M_G_array_II
       
-%% SIMULATION ÖFFNEN UND STARTEN
-% mdlName = 'AutoRs_Simulation.slx';
-% open('./3. Simulationen/AutoRS_Simulation.slx');
-% sim(mdlName);
+%% MODELL- UND REGLERVALIDIERUNG (startet die Simulation mehrmals)
+Modell_Validierung();
+Regler_Validierung();

@@ -18,6 +18,7 @@ function Wellentorsion()
     t_vec = simOut.tout;
 
     % Plotten der Simulationsergebnisse
+    figure
     plot(t_vec,vec_wellentorsion)
     xlabel('Zeit t [s]','interpreter','latex')
     ylabel('Winkeldifferenz $\Delta\varphi$ [$^{\circ}$]','interpreter','latex')

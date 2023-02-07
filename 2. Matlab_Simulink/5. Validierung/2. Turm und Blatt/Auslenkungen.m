@@ -17,6 +17,7 @@ function Auslenkungen()
     t_vec = simOut.tout;
 
     % Plotten der Simulationsergebnisse
+    figure
     plot(t_vec,vec_y_T,t_vec,vec_y_B)
     xlabel('Zeit t [s]','interpreter','latex')
     ylabel('Auslenkung $y$ [$m$]','interpreter','latex')

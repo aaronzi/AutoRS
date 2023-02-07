@@ -19,6 +19,7 @@ function Winkelgeschwindigkeiten()
     t_vec = simOut.tout;
 
     % Plotten der Simulationsergebnisse
+    figure
     subplot(2,1,1)
     plot(t_vec,vec_Phi_g_Punkt)
     xlabel('Zeit t [s]','interpreter','latex')
