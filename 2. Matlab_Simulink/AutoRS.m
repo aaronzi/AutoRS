@@ -48,5 +48,5 @@ load('kiw_III_array.mat');          % kiw_III_array
 load('M_G_OTLB.mat');               % M_G_array_II
       
 %% MODELL- UND REGLERVALIDIERUNG (startet die Simulation mehrmals)
-Modell_Validierung();
-Regler_Validierung();
+% Modell_Validierung();
+% Regler_Validierung();

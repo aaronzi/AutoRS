@@ -1,7 +1,7 @@
 function const_wind_low()
     %% Aufrufen der Simulationsstruktur für die Generierung von Winddaten
     Windtyp                         = 1;  % 1: konstante Windgeschw., 2: IECwind  Windböe, 3: Turbulenter Wind, 4: Windgeschwindigkeitsstufen 
-    Windgeschwindigkeit             = 9;  % Konstante Windgeschw., wenn Windtyp = 1 ausgewählt wurde
+    Windgeschwindigkeit             = 8;  % Konstante Windgeschw., wenn Windtyp = 1 ausgewählt wurde
     Durch_Windgeschwindigkeit       = 16; % Durchschnittliche Windgeschwindigkeit als Eingang für den Störungsbeobachter
     Boentyp                         = 8;  % 1: 6 m/s, 2: 8 m/s, 3: 10 m/s, 4: 11 m/s, 5: 12 m/s, 6: 14 m/s, 7: 16 m/s, 8: 18 m/s
     Turbolenter_Windtyp             = 7;  % Auswahl der mittleren Windgeschw. für den turbulenten Wind

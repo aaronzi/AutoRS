@@ -1,7 +1,7 @@
-function const_wind_medium()
+function constraint_auslenkung()
     %% Aufrufen der Simulationsstruktur für die Generierung von Winddaten
     Windtyp                         = 1;  % 1: konstante Windgeschw., 2: IECwind  Windböe, 3: Turbulenter Wind, 4: Windgeschwindigkeitsstufen 
-    Windgeschwindigkeit             = 10.7;  % Konstante Windgeschw., wenn Windtyp = 1 ausgewählt wurde
+    Windgeschwindigkeit             = 25; % Konstante Windgeschw., wenn Windtyp = 1 ausgewählt wurde
     Durch_Windgeschwindigkeit       = 16; % Durchschnittliche Windgeschwindigkeit als Eingang für den Störungsbeobachter
     Boentyp                         = 8;  % 1: 6 m/s, 2: 8 m/s, 3: 10 m/s, 4: 11 m/s, 5: 12 m/s, 6: 14 m/s, 7: 16 m/s, 8: 18 m/s
     Turbolenter_Windtyp             = 7;  % Auswahl der mittleren Windgeschw. für den turbulenten Wind
@@ -21,52 +21,60 @@ function const_wind_medium()
     
     %% Anzeige der Simulationsergebnisse
     t_vec               = wea_simout.tout;
-    vec_omega_g         = wea_simout.omega_g(1,:).Data;
-    vec_P_G             = wea_simout.P_G(1,:).Data;
-    vec_State           = wea_simout.State(1,:).Data;
-    vec_M_G             = wea_simout.M_G(1,:).Data;
+    vec_y_B             = wea_simout.y_B(1,:).Data;
+    vec_y_T             = wea_simout.y_T(1,:).Data;
+    vec_F_s             = wea_simout.F_s(1,:).Data;
+    vec_theta           = rad2deg(wea_simout.theta(1,:).Data);
 
+    %vec_omega_g         = wea_simout.omega_g(1,:).Data;
+    %vec_State           = wea_simout.State(1,:).Data;
+    %vec_M_G             = wea_simout.M_G(1,:).Data;
     %vec_M_R             = wea_simout.M_R(1,:).Data;
     %vec_Torsionswinkel  = wea_simout.Torsionswinkel(1,:).Data;
     %vec_omega_r         = wea_simout.omega_r(1,:).Data;
-    %vec_F_s             = wea_simout.F_s(1,:).Data;
-    %vec_theta           = rad2deg(wea_simout.theta(1,:).Data);
-    %vec_y_B             = wea_simout.y_B(1,:).Data;
-    %vec_y_T             = wea_simout.y_T(1,:).Data;
-    %vec_v_1             = wea_simout.v_1(1,:).Data;   
+    %vec_v_1             = wea_simout.v_1(1,:).Data;
+
+    yTmax =  1.5.* ones(10001,1);
+    yBmax = 7.* ones(10001,1);
     
     % Plotten der Simulationsergebnisse
     figure
     set(groot,'defaultAxesTickLabelInterpreter','latex');
-
-    % omega_g, P_g, M_G, state
+    
     subplot(2,1,1)
     yyaxis left
-    plot(t_vec,vec_omega_g,'LineWidth',2)
-    ylabel('Generatordrehzahl $\omega_{\mathrm{g}}$ [$\frac{rad}{s}$]','interpreter','latex')
+    plot(t_vec,vec_y_T,'LineWidth',2)
+    hold on
+    plot(t_vec,yTmax,'--')
+    ylabel('Turmauslenkung $y_{\mathrm{T}}$ [$m$]','interpreter','latex')
+    ylim([-1 2])
+    hold off
     yyaxis right
-    plot(t_vec,vec_P_G,'LineWidth',2)
-    ylabel('Generatorleistung $P_{\mathrm{G}}$ [$W$]','interpreter','latex')
+    plot(t_vec,vec_y_B,'LineWidth',2)
+    hold on
+    plot(t_vec,yBmax,'--')
+    hold off
+    ylabel('Blattauslenkung $y_{\mathrm{B}}$ [$m$]','interpreter','latex')
     xlabel('Zeit t [s]','interpreter','latex')
-    title('Generatordrehzahl und -Leistung der WEA')
+    title('Turm- und Blattauslenkung')
     grid on
-
+    legend('$y_{\mathrm{T}}$','$y_{\mathrm{T,max}}$','$y_{\mathrm{B}}$','$y_{\mathrm{B,max}}$','Interpreter','latex','Location','northeast')
+    
     subplot(2,1,2)
-    area(t_vec,vec_State)
-    yticklabels({'Initial State', 'Idle', 'UTLB $\mathrm{I}$', 'OTLB $\mathrm{II}$', 'VLB $\mathrm{III}$', 'E-Stop'});
-    ytickangle(45);
-    ylabel('Zustand der WEA','interpreter','latex')
+    yyaxis left
+    plot(t_vec,vec_F_s,'LineWidth',2)
+    ylabel('Schubkraft $F_{\mathrm{s}}$ [$N$]','interpreter','latex')
     yyaxis right
-    plot(t_vec,vec_M_G,'LineWidth',2)
-    ylabel('Generatormoment $M_{\mathrm{G}}$ [$Nm$]','interpreter','latex')
+    plot(t_vec,vec_theta,'LineWidth',2)
+    ylabel('Pitchwinkel $\theta$ [$^\circ$]','interpreter','latex')
     xlabel('Zeit t [s]','interpreter','latex')
-    title('Automatenzustand und Generatormoment der WEA')
+    title('Schubkraft und Pitchwinkel der Rotorblätter')
     grid on
 
     % Ausgabe in PDF
     pos = get(gcf, 'Position');
-    set(gcf, 'Position',pos+[-600 -300 600 300])
-    filename = fullfile('./5. Validierung/3. Reglervalidierung/const_wind_medium.pdf');
+    set(gcf, 'Position',pos+[-300 -200 300 200])
+    filename = fullfile('./5. Validierung/3. Reglervalidierung/constraint_auslenkung.pdf');
     exportgraphics(gcf,filename,'ContentType','vector')
     disp('Successfully created PDF')
 end
