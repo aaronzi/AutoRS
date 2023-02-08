@@ -1,7 +1,11 @@
-\section{Ausblick}
+\section{Ausblick} \label{ausblick}
 
-%Gain Scheduling im unteren Teillastbereich
+In dieser Ausarbeitung konnte erfolgreich gezeigt werden, wie eine Windenergieanlage modelliert und anschließend anhand des entwickelten Modells geregelt werden kann. Es hat sich jedoch auch gezeigt, dass einige Verbesserungen und Optimierungen von Nöten wären, bevor das Modell und insbesondere die Regelstruktur auf eine reale WEA angewendet werden kann. Nachfolgend sind die auffälligsten Mängel zusammengefasst mit möglichen Ansätzen für die Ausbesserung der Mängel \bzw die Optimierung des Verhaltens der Anlage.\\
 
-%Mehr Arbeitspunkte für oTLB und VL
+Der Größte Mangel in der aktuellen Implementierung ist die Nichteinhaltung der gegebenen Constraints. Der Einsatz des implementierten Funktionsmodells würde voraussichtlich zur Zerstörung der realen Anlage sorgen. Als Lösungsansatz könnte der Detailgrad des Funktionsmodells angepasst werden, so dass als Grundlage für die Reglerimplementierung ein kombiniertes Rotor-/Turm-/Triebsstrangmodell dient.\\
 
-%Umrichter implementieren 
+Ebenfalls aufgefallen war das pendelnde Verhalten zwischen Betriebszuständen, wenn die maximale Windgeschwindigkeit in kurzen Zeitabständen überschritten wird. Hier wäre es vermutlich ratsam eine Zeitsperre in die Steuereinheit einzubauen, die dafür sorgt, dass die Anlage nicht sofort wieder anläuft. Es ist als wahrscheinlich einzustufen, dass wenn der Wind einmal die kritische Windgeschwindigkeit erreicht hat, dass er das auch weitere Male in der nächsten Zeit tut.\\
+
+Die Reglervalidierung hat gezeigt, dass der obere Teillastbereich nur für einen sehr kleinen Bereich der Rotordrehzahl benötigt wird. Es ist schwer diesen Bereich dediziert anzufahren und damit auch nachzuweisen. Da der Bereich jedoch sehr klein ist, kann die Aussage getroffen werden, dass der vergleichsweise komplexe Regler auch mit einem Linearen Verhalten zwischen unterem- und Volllastbereich ersetzt werden könnte. Umgangssprachlich kann hier von einem over-Engineering geredet werden.\\
+
+Als letzter Punkt soll an dieser Stelle noch die Relevanz eines Umrichters \bzw Umrichtermodells postuliert werden. Wie bereits in mehreren Stellen der Arbeit erwähnt, wurde lediglich das Störverhalten betrachtet. Die Implementierung eines Umrichters zur Leistungsoptimierung durch Drehzahlvariabilität würde die Umsetzung des Führungsverhaltens ermöglichen.

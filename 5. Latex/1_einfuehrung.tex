@@ -1,7 +1,7 @@
 \section{Einführung in die Windenergieanlage} \label{einfuehrung}
 % Aaron
 
-Ziel dieser Arbeit soll es sein, eine drehzahlvariable \SI{5}{MW} Windturbine zu Modellieren, Simulieren und die Regelung umzusetzen. Konkret handelt es sich um eine \textit{NREL}-Turbine, die für den Offshore-Einsatz konzipiert ist.\\
+Ziel dieser Arbeit soll es sein, eine drehzahlvariable \SI{5}{MW} Windturbine zu modellieren, simulieren und die Regelung umzusetzen. Konkret handelt es sich um eine \textit{NREL}-Turbine, die für den Offshore-Einsatz konzipiert ist.\\
 Dafür sollen folgende Anforderungen umgesetzt werden:
 
 \begin{enumerate}
@@ -12,7 +12,7 @@ Dafür sollen folgende Anforderungen umgesetzt werden:
     \item Reglerentwurf für alle Arbeitspunkte (über kennfeldbasierte, arbeitspunktabhängige Nachführung der Reglerkoeffizienten)
 \end{enumerate}
 
-Der modellhafte Aufbau einer Windturbine ist nachfolgend (in \autoref{fig:Bild1.1}) dargestellt.
+Der modellhafte Aufbau einer Windturbine ist nachfolgend in \autoref{fig:Bild1.1} dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -104,30 +104,30 @@ Wie bereits aus den Anforderungen hervorgeht, soll das umzusetzende Modell unter
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Antriebsstrang}                                                                                                                \\ \hline
         \acs{ng}                 & Getriebeübersetzungsverhältnis                   & $97.0$                                                                \\
-        \acs{JR}                 & Rotor Trägheitsmoment                            & $\SI{38759 \cdot 10^{3}}{kg \cdot m^{2}}$                             \\
-        \acs{JG}                 & Generator Trägheitsmoment                        & $\SI{534.1}{kg \cdot m^{2}}$                                          \\
-        \acs{ks}                 & Triebsstrangsteifigkeit bez. auf schnelle Welle  & $867637000 / n_{\mathrm{g}}^{2}$                                      \\
-        \acs{ds}                 & Dämpfungsfaktor d. Triebsstranges                & $6215000 / n_{\mathrm{g}}^{2}$                                        \\ \hline
+        \acs{JR}                 & Rotorträgheitsmoment                            & $\SI{38759 \cdot 10^{3}}{kg \cdot m^{2}}$                             \\
+        \acs{JG}                 & Generatorträgheitsmoment                        & $\SI{534.1}{kg \cdot m^{2}}$                                          \\
+        \acs{ks}                 & Triebstrangsteifigkeit bez. auf schnelle Welle  & $\SI{92.21\cdot 10^{3}}{N\cdot m^{-1}}$                                      \\
+        \acs{ds}                 & Dämpfungsfaktor d. Triebstranges                & $\SI{660.54}{N\cdot s\cdot m^{-1}}$                                        \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Turm}                                                                                                                          \\ \hline
         \acs{mNac}               & Gondelmasse                                      & $\SI{240000}{kg}$                                                     \\
         \acs{mRot}               & Rotormasse (Blätter und Narbe)                   & $\SI{11000}{kg}$                                                      \\
         \acs{mTow}               & Turmmasse                                        & $\SI{347460}{kg}$                                                     \\
-        \acs{mT}                 & Ersatzmasse der Windkraftanlage                  & $m_{\mathrm{Nac}} + m_{\mathrm{Rot}} + 0.25 \cdot m_{\mathrm{Tow}}$   \\
-        \acs{kT}                 & Ersatzsteifigkeit des Turmes                     & $\SI{1981900}{N / m}$                                                 \\
-        \acs{dT}                 & Dämpfungsfaktor des Turmes                       & $7 \cdot 10^{4}$                                                      \\ \hline
+        \acs{mT}                 & Ersatzmasse der Windkraftanlage                  & $\SI{337865}{kg}$   \\
+        \acs{kT}                 & Ersatzsteifigkeit des Turmes                     & $\SI{1981900}{N\cdot m^{-1}}$                                                 \\
+        \acs{dT}                 & Dämpfungsfaktor des Turmes                       & $\SI{7 \cdot 10^{4}}{N\cdot s\cdot m^{-1}}$                                                      \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Rotorblatt}                                                                                                                    \\ \hline
         \acs{R}                  & Rotoraußenradius                                 & $\SI{63}{m}$                                                          \\
         \acs{mBla}               & Masse eines Rotorblattes                         & $\SI{17740}{kg}$                                                      \\
         \acs{r}                  & Effektive Blattlänge                             & $\SI{21.975}{m}$                                                      \\
-        \acs{mB}                 & Effektiv schwingende Blattmasse                  & $0.25 \cdot m_{\mathrm{Bla}}$                                         \\
-        \acs{kB}                 & Ersatzsteifigkeit eines Blattes                  & $\SI{40000}{N / m}$                                                   \\
-        \acs{dB}                 & Dämpfungsfaktor eines Blattes                    & $2 \cdot 10^{4}$
+        \acs{mB}                 & Effektiv schwingende Blattmasse                  & $\SI{4435}{kg}$                                         \\
+        \acs{kB}                 & Ersatzsteifigkeit eines Blattes                  & $\SI{40000}{N\cdot m^{-1}}$                                                   \\
+        \acs{dB}                 & Dämpfungsfaktor eines Blattes                    & $\SI{2 \cdot 10^{4}}{N\cdot s\cdot m^{-1}}$
                                 \\ \hline
         \rowcolor{lightGrey}
         \multicolumn{3}{|c|}{Weitere Parameter}                                                                                                             \\ \hline
-        \acs{rho}                & Luftdichte                                       & $\SI{1.225}{kg / m^{3}}$                                              \\ \hline
+        \acs{rho}                & Luftdichte                                       & $\SI{1.225}{kg\cdot m^{-3}}$                                              \\ \hline
     \end{tabular}
     \caption[Modellparameter]{Modellparameter der NREL Windturbine}
     \label{tab:Tabelle1.1}
@@ -136,7 +136,7 @@ Wie bereits aus den Anforderungen hervorgeht, soll das umzusetzende Modell unter
 Ziel soll es sein eine Regelung für den Teillast- und Volllastbetrieb umzusetzen, die auf die in Simulink implementierten (Teil-)Modelle angewendet wird. Als Stellgröße gelten das Generatormoment und der kollektive Pitchwinkel. Dabei sind folgende Systemgrenzen zu berücksichtigen:
 
 \begin{enumerate}
-    \item Stellgrößenbegrenzung des Pitchantriebes von maximal $8^\circ$
+    \item Stellgrößenbegrenzung des Pitchantriebes von maximal $8^\circ$/s
     \item Maximale Narbenauslenkung bei Böen sei $\SI{1.5}{m}$
     \item Maximale Blattauslenkung an der Spitze sei $\SI{7}{m}$
     \item Die Rotordrehzahl darf maximal 1.2-fach so groß sein wie die Nenndrehzahl

@@ -1,0 +1,91 @@
+\section{Erstellung des Gesamtmodells} \label{gesamtmodell}
+
+Ziel dieses Abschnittes ist es die entwickelten Teilmodelle für den Antriebsstrang aus \autoref{modellierung_antriebsstrang} und das Turm-Blatt-Modell aus \autoref{turm_blatt} in eine gemeinsame Simulationsstruktur zu bringen. Ebenfalls integriert wird die Steuerungs- \bzw Regeleinheit und Funktionsblöcke für die Berechnung von abgeleiteten Größen.\\
+\autoref{fig:Bild3.1} zeigt die projektierte Gesamtstruktur in einer Blockdarstellung. Bei den dunkelgrauen Blöcken handelt es sich um die in den vorangegangenen Abschnitten aufgestellten Teilmodelle. Grün hinterlegt ist Der Block für die Steuerung der Windenergieanlage. Ebenfalls benötigt wird ein Funktionsblock für die Berechnung der Schnelllaufzahl aus der zurückgeführten Rotorwinkelgeschwindigkeit \acs{omegaR} und der Windgeschwindigkeit \acs{v1}. Im darunter gelegenen Block sind die Kennfelder für den Momentenbeiwert \acs{cM} und den Schubkraftbeiwert \acs{cT} implementiert. Die Schubkraft selbst, welche für die Simulation der Turm- und Blattauslenkungen benötigt wird, ist im Funktionsblock unten mittig in der Abbildung umgesetzt.\\
+Als Eingang der Simulation Wird die Windgeschwindigkeit \acs{v1} benötigt. Es handelt sich dabei um die Störgröße aus Sicht der Regelstruktur. Auf die Simulation des Führungsverhaltens wird in dieser Arbeit verzichtet. Genaueres ist im folgenden Abschnitt zur Momentenregelung (\autoref{regelung}) nachzulesen.\\
+% Als Ausgänge der Simulation werden die rotor- und generatorseitigen Winkelgeschwindigkeiten benötigt, sowie die Auslenkung von Turm und Rotorblättern. Die vier Größen sind auf der rechten Seite der Abbildung wiederzufinden.
+
+\begin{figure}[H]
+    \centering
+    \begin{pspicture}[showgrid=false](0,0)(15,8)
+        \psframe(0,0)(15,8)
+        % Berechnung der Schnelllaufzahl
+        \psframe[linecolor=black,fillcolor=lightGrey,fillstyle=solid](1.5,4.5)(4.5,6.5)
+        \rput(3,5.75){\footnotesize Berechnung}
+        \rput(3,5.25){\footnotesize Schnelllaufzahl}
+        \psline{->}(0.5,5.5)(1.5,5.5)
+        \rput(0.8,5.7){\scriptsize \acs{v1}}
+        \rput(2.7,7){\scriptsize \acs{omegaR}}
+        \rput(4.8,5.2){\scriptsize \acs{lambda}}
+        % Steuereinheit
+        \psframe[linecolor=black,fillcolor=htw,fillstyle=solid](6,4.5)(9,6.5)
+        \rput(7.5,5.75){\footnotesize \color{white} Steuerung/}
+        \rput(7.5,5.25){\footnotesize \color{white} Regelung}
+        \psline{-}(5.25,6.5)(5.25,6)
+        \psline{->}(5.25,6)(6,6)
+        \rput(5.5,6.4){\scriptsize \acs{v1}}
+        \rput(7.2,7){\scriptsize \acs{omegaR}}
+        \psline{->}(9,6)(10.5,6)
+        \psline{->}(9,5)(10.5,5)
+        \rput(9.75,6.2){\scriptsize \acs{MG}}
+        \rput(9.75,5.2){\scriptsize \acs{MR}}
+        \rput(6.55,4.2){\scriptsize \acs{theta}}
+        \rput(8.55,4.2){\scriptsize \acs{cM}}
+        % Antriebsstrang
+        \psframe[linecolor=black,fillcolor=darkgrey,fillstyle=solid](10.5,4.5)(13.5,6.5)
+        \rput(12,5.75){\footnotesize \color{white} Modell}
+        \rput(12,5.25){\footnotesize \color{white} Antriebsstrang}
+        \psline{->}(13.5,6)(14.5,6)
+        \psline{->}(13.5,5)(14.5,5)
+        \rput(14.3,6.2){\scriptsize \acs{omegaR}}
+        \rput(14.3,5.2){\scriptsize \acs{omegaG}}
+        % Lookup Tables
+        \psframe[linecolor=black,fillcolor=lightGrey,fillstyle=solid](1.5,0.5)(4.5,2.5)
+        \rput(3,1.75){\footnotesize Lookup}
+        \rput(3,1.25){\footnotesize Tables}
+        \psline{->}(4.5,1)(6,1)
+        \rput(5.25,1.2){\scriptsize \acs{cT}}
+        \rput(3.45,2.8){\scriptsize \acs{cM}}
+        \rput(1.3,2.2){\scriptsize \acs{theta}}
+        \rput(1.3,1.2){\scriptsize \acs{lambda}}
+        % Berechnung der Schubkraft
+        \psframe[linecolor=black,fillcolor=lightGrey,fillstyle=solid](6,0.5)(9,2.5)
+        \rput(7.5,1.75){\footnotesize Berechnung}
+        \rput(7.5,1.25){\footnotesize Schubkraft}
+        \psline{-}(5.25,2.5)(5.25,2)
+        \psline{->}(5.25,2)(6,2)
+        \rput(5.5,2.4){\scriptsize \acs{v1}}
+        \psline{->}(9,1.5)(10.5,1.5)
+        \rput(9.75,1.7){\scriptsize \acs{FS}}
+        % Turm und Blatt
+        \psframe[linecolor=black,fillcolor=darkgrey,fillstyle=solid](10.5,0.5)(13.5,2.5)
+        \rput(12,1.75){\footnotesize \color{white} Modell}
+        \rput(12,1.25){\footnotesize \color{white} Antriebsstrang}
+        \psline{->}(13.5,2)(14.5,2)
+        \psline{->}(13.5,1)(14.5,1)
+        \rput(14.3,2.2){\scriptsize \acs{yT}}
+        \rput(14.3,1.2){\scriptsize \acs{yB}}
+        % Linie Antriebsstrang -> Steuereinheit -> Berechnung Schnelllaufzahl
+        \psline{-}(14,6)(14,7.5)
+        \psline{-}(14,7.5)(3,7.5)
+        \psline{->}(7.5,7.5)(7.5,6.5)
+        \psline{->}(3,7.5)(3,6.5)
+        % Linie Berechnung Schnelllaufzahl -> Lookup Tables
+        \psline{-}(4.5,5)(5.25,5)
+        \psline{-}(5.25,5)(5.25,4)
+        \psline{-}(0.5,4)(5.25,4)
+        \psline{-}(0.5,4)(0.5,1)
+        \psline{->}(0.5,1)(1.5,1)
+        % Linie Steuereinheit -> Lookup Tables
+        \psline{-}(6.75,4.5)(6.75,3.5)
+        \psline{-}(6.75,3.5)(1,3.5)
+        \psline{-}(1,3.5)(1,2)
+        \psline{->}(1,2)(1.5,2)
+        % Linie Lookup Tables -> Steuereinheit
+        \psline{-}(3.75,2.5)(3.75,3)
+        \psline{-}(3.75,3)(8.25,3)
+        \psline{->}(8.25,3)(8.25,4.5)
+    \end{pspicture}
+    \caption[Zusammenführung der Teilmodelle]{Blockdarstellung des Gesamtmodells nach Zusammenführung der Teilmodelle und Teilkomponenten}
+    \label{fig:Abbildung3.1}
+\end{figure}

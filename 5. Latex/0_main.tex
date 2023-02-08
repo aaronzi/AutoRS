@@ -329,7 +329,7 @@
       \textbf{Fachsemester:}  & 3.\xspace FS                                        \\
       \textbf{Fach:}          & VA3 Automation in regenerativen Energiesystemen     \\
       \textbf{Dozent:}        & Prof.\xspace Dr.\xspace -Ing.\xspace Horst Schulte  \\
-      \textbf{Abgabe am:}     & 10.\xspace Februar 2022                             \\ 
+      \textbf{Abgabe am:}     & 10.\xspace Februar 2023                             \\ 
    \end{tabular}
 \end{titlepage}
 \clearpage
@@ -354,114 +354,176 @@
 %--------------Symbolverzeichnis------------------
 \section*{Symbolverzeichnis}
 \begin{acronym}[Symbols]
+    % A
     \acro{A}        [$A$]                       {Querschnittsfläche}
     \acro{Ai}       [$A_{\mathrm{i}}$]          {Querschnittfläche an Stelle i}    
     \acro{A1}       [$A_{\mathrm{1}}$]          {Eintritts- (kontroll-) Fläche einer Strömungsröhre}
     \acro{A2}       [$A_{\mathrm{2}}$]          {Rotorfläche}
     \acro{A3}       [$A_{\mathrm{3}}$]          {Austritts- (kontroll-) Fläche einer Strömungsröhre}
+    
+    % B
+    \acro{bflug}    [$b_{\mathrm{Flug}}$]       {Breite eines Tragflügels}
+    
+    % C
     \acro{c}        [$c$]                       {Anströmgeschwindigkeit}
-    \acro{cA}       [$c_{\mathrm{A}}$]          {Autriebsbeiwert}
-    \acro{cW}       [$c_{\mathrm{W}}$]          {Widerstandbeiwert}
+    \acro{cA}       [$c_{\mathrm{A}}$]          {Auftriebsbeiwert}
     \acro{cM}       [$c_{\mathrm{M}}$]          {Momentenbeiwert}
     \acro{cMopt}    [$c_{\mathrm{M,opt}}$]      {optimaler Momentenbeiwert}
     \acro{cP}       [$c_{\mathrm{P}}$]          {Leistungsbeiwert}
-    \acro{cPopt}    [$c_{\mathrm{P,opt}}$]      {optimaler Leistungsbeiwert}
     \acro{cPmax}    [$c_{\mathrm{P,max}}$]      {max. Leistungsbeiwert}
-    \acro{cs}       [$c_{\mathrm{s}}$]          {Schubbeiwert}
+    \acro{cPopt}    [$c_{\mathrm{P,opt}}$]      {optimaler Leistungsbeiwert}
+    \acro{cs}       [$c_{\mathrm{s}}$]          {Schubbeiwert}  
+    \acro{cT}       [$c_{\mathrm{T}}$]          {Schubkraftbeiwert}
+    \acro{cW}       [$c_{\mathrm{W}}$]          {Widerstandsbeiwert}
+
+    % D
+    \acro{dB}       [$d_{\mathrm{B}}$]          {Dämpfungsfaktor eines Blattes}
+    \acro{ds}       [$d_{\mathrm{s}}$]          {Dämpfungsfaktor des Triebsstranges bezogen auf die schnelle Welle}
+    \acro{dT}       [$d_{\mathrm{T}}$]          {Dämpfungsfaktor des Turmes}
+
+    % E
     \acro{EW}       [$E_{\mathrm{W}}$]          {Kinetische Energie des Windes}
+    
+    % F
     \acro{FA}       [$F_{\mathrm{A}}$]          {Auftriebskraft (am Flügel-/Blattprofil)}
     \acro{Fres}     [$F_{\mathrm{res}}$]        {resultierende Kraft}
-    \acro{deltaFU}  [$\Delta F_{\mathrm{U}}$]   {anteilige Umfangskraft}
-    \acro{deltaFS}  [$\Delta F_{\mathrm{S}}$]   {anteilige Schubkraft}
     \acro{FS}       [$F_{\mathrm{S}}$]          {Schubkraft auf den Rotor}
     \acro{FSA}      [$F_{\mathrm{S,A}}$]        {Schubkraftanteil der Auftriebskraft}
-    \acro{FSW}      [$F_{\mathrm{S,W}}$]        {Schubkraftanteil der Widerstandskraft}
     \acro{FST}      [$F_{\mathrm{ST}}$]         {Staukraft am Rotor}
-    \acro{FUA}      [$F_{\mathrm{U,A}}$]        {Umfangskraftanteil der Auftriebskraft}
-    \acro{FUW}      [$F_{\mathrm{U,W}}$]        {Umfangskraftanteil der Widerstandskraft}
+    \acro{FSW}      [$F_{\mathrm{S,W}}$]        {Schubkraftanteil der Widerstandskraft}
+    \acro{FUA}      [$F_{\mathrm{U,A}}$]        {Umfangskraftanteil der Auftriebskraft}    
+     \acro{FUW}      [$F_{\mathrm{U,W}}$]        {Umfangskraftanteil der Widerstandskraft} 
     \acro{FW}       [$F_{\mathrm{W}}$]          {Widerstandskraft (am Flügel-/Blattprofil)}
+    \acro{deltaFS}  [$\Delta F_{\mathrm{S}}$]   {anteilige Schubkraft}    
+    \acro{deltaFU}  [$\Delta F_{\mathrm{U}}$]   {anteilige Umfangskraft}
+
+    % J
     \acro{JB}       [$J_{\mathrm{B}}$]          {Massenträgheitsmoment eines Rotorblattes}
     \acro{JG}       [$J_{\mathrm{G}}$]          {Massenträgheitsmoment des Generators}
-    \acro{JLW}      [$J_{\mathrm{LW}}$]         {Massenträgheitsmoment der Langsamen (Haupt-) Welle}
+    \acro{JLW}      [$J_{\mathrm{LW}}$]         {Massenträgheitsmoment der langsamen (Haupt-) Welle}
     \acro{JN}       [$J_{\mathrm{N}}$]          {Massenträgheitsmoment der Nabe}
     \acro{JR}       [$J_{\mathrm{R}}$]          {Massenträgheitsmoment des Rotors (= Nabe + Blätter)}
     \acro{JSW}      [$J_{\mathrm{SW}}$]         {Massenträgheitsmoment der schnellen (Zwischen-) Welle}
-    \acro{MG}       [$M_{\mathrm{G}}$]          {Generatordrehmoment}
-    \acro{MGnenn}   [$M_{\mathrm{G,nenn}}$]     {Generatordrehnennmoment}
-    \acro{PG}       [$P_{\mathrm{G,nenn}}$]     {Generatornennleistung}
-    \acro{nG}       [$n_{\mathrm{G,nenn}}$]     {Generatornenndrehzahl}
-    \acro{MR}       [$M_{\mathrm{R}}$]          {Rotordrehmoment}
-    \acro{MW}       [$M_{\mathrm{W}}$]          {\glqq Wind\grqq{}-drehmoment}
-    \acro{MB}       [$M_{\mathrm{B}}$]          {Blattdrehmoment}
-    \acro{mNac}     [$m_{\mathrm{Nac}}$]        {Gondelmasse}
-    \acro{mRot}     [$m_{\mathrm{Rot}}$]        {Rotormasse (= Nabe + Blätter)}
-    \acro{mTow}     [$m_{\mathrm{Tow}}$]        {Turmmasse}
-    \acro{mT}       [$m_{\mathrm{T}}$]          {Ersatzmasse der gesamten Windkraftanlage}
-    \acro{mBla}     [$m_{\mathrm{Bla}}$]        {Masse eines Rotorblattes}
-    \acro{mB}       [$m_{\mathrm{B}}$]          {Effektiv schwingende Blattmasse}
+    
+    % K
+    \acro{kB}       [$k_{\mathrm{B}}$]          {Ersatzsteifigkeit eines Blattes}    
     \acro{ks}       [$k_{\mathrm{s}}$]          {Triebsstrangsteifigkeit bezogen auf die schnelle Welle}
     \acro{kT}       [$k_{\mathrm{T}}$]          {Ersatzsteifigkeit des Turmes}
-    \acro{kB}       [$k_{\mathrm{B}}$]          {Ersatzsteifigkeit eines Blattes}
-    \acro{ds}       [$d_{\mathrm{s}}$]          {Dämpfungsfaktor des Triebsstranges bezogen auf die schnelle Welle}
-    \acro{dT}       [$d_{\mathrm{T}}$]          {Dämpfungsfaktor des Turmes}
-    \acro{dB}       [$d_{\mathrm{B}}$]          {Dämpfungsfaktor eines Blattes}
-    \acro{yT}       [$y_{\mathrm{T}}$]          {Turmverbiegung}
-    \acro{yB}       [$y_{\mathrm{B}}$]          {Blattverbiegung}
+    \acro{kv}       [$k_{\mathrm{v}}$]          {Linearisierungkoeffizient} 
+    \acro{kI}       [$k_{\mathrm{I}}$]          {Faktor für die Steuerung im unteren Teillastbereich, konstant}
+    \acro{ktheta}   [$k_{\theta}$]              {Linearisierungkoeffizient}
+    \acro{komegaR}  [$k_{\omega\mathrm{R}}$]    {Linearisierungkoeffizient}
+    
+    % M
     \acro{m}        [$m$]                       {Luftmasse}
+    \acro{mB}       [$m_{\mathrm{B}}$]          {Effektiv schwingende Blattmasse}     
+    \acro{mBla}     [$m_{\mathrm{Bla}}$]        {Masse eines Rotorblattes}
     \acro{mi}       [$m_{\mathrm{i}}$]          {Luftmasse an Stelle i}
+    \acro{mNac}     [$m_{\mathrm{Nac}}$]        {Gondelmasse}    
+    \acro{mRot}     [$m_{\mathrm{Rot}}$]        {Rotormasse (= Nabe + Blätter)}
+    \acro{mT}       [$m_{\mathrm{T}}$]          {Ersatzmasse der gesamten Windkraftanlage}
+    \acro{mTow}     [$m_{\mathrm{Tow}}$]        {Turmmasse}
     \acro{mdot}     [$\dot m$]                  {Luftmassenstrom}
     \acro{mdoti}    [$\dot{m}_{\mathrm{i}}$]    {Luftmassenstrom an Stelle i}
     \acro{mdot1}    [$\dot{m}_{\mathrm{1}}$]    {Luftmassenstrom an Stelle 1}
     \acro{mdot2}    [$\dot{m}_{\mathrm{2}}$]    {Luftmassenstrom an Stelle 2}
-    \acro{mdot3}    [$\dot{m}_{\mathrm{3}}$]    {Luftmassenstrom an Stelle 3}
+    \acro{mdot3}    [$\dot{m}_{\mathrm{3}}$]    {Luftmassenstrom an Stelle 3} \acro{MB}       [$M_{\mathrm{B}}$]          {Blattdrehmoment}   
+    \acro{MG}       [$M_{\mathrm{G}}$]          {Generatordrehmoment}
+    \acro{MG1}      [$M_{\mathrm{G,I}}$]        {Generatordrehmoment unterer Teillastbereich}
+    \acro{MG2}      [$M_{\mathrm{G,II}}$]       {Generatordrehmoment oberer Teillastbereich}
+    \acro{MGnenn}   [$M_{\mathrm{G,nenn}}$]     {Generatornenndrehmoment}
+    \acro{MGsoll}   [$M_{\mathrm{G,soll}}$]     {Generatorsolldrehmoment}
+    \acro{MR}       [$M_{\mathrm{R}}$]          {Rotordrehmoment}
+    \acro{MW}       [$M_{\mathrm{W}}$]          {\glqq Wind\grqq{}-drehmoment}
+    
+    % N
     \acro{ng}       [$n_{\mathrm{g}}$]          {Getriebeübersetzung}
+    \acro{nG}       [$n_{\mathrm{G}}$]          {Generatordrehzahl}
+    \acro{nGNenn}   [$n_{\mathrm{G,nenn}}$]     {Generatornenndrehzahl}
     \acro{nR}       [$n_{\mathrm{R}}$]          {Rotordrehzahl}
+    
+    % P
+    \acro{PG}       [$P_{\mathrm{G}}$]          {Generatorleistung}
+    \acro{PGNenn}   [$P_{\mathrm{G,nenn}}$]     {Generatornennleistung}
     \acro{PR}       [$P_{\mathrm{R}}$]          {Mechanische Leistung des Rotors}
-    \acro{PW}       [$P_{\mathrm{W}}$]          {Mechanische Leistung des Windes}
+    \acro{PW}       [$P_{\mathrm{W}}$]          {Mechanische Leistung des Windes}    
+    
+    % R
     \acro{r}        [$r$]                       {Effektive Blattlänge}
     \acro{ri}       [$r_{\mathrm{i}}$]          {Radius an Stelle i}
     \acro{R}        [$R$]                       {Rotoraußenradius}
+    
+    % T
+    \acro{tflug}    [$t_{\mathrm{Flug}}$]       {Tiefe eines Tragflügels}
+    
+    % U
     \acro{u}        [$u$]                       {Bewegungsgeschwindigkeit}
     \acro{u'}       [$u^{'}$]                   {relative Bewegungsgeschwindigkeit}
+    
+    % V
     \acro{v}        [$v$]                       {Hauptwindgeschwindigkeitsrichtung des Windvektors $\underline v$}
     \acro{vi}       [$v_{\mathrm{i}}$]          {Windgeschwindigkeit an Stelle i}
-    \acro{vdoti}    [$\dot{v}_{\mathrm{i}}$]    {Windgeschwindigkeitsänderung an Stelle i}
     \acro{v1}       [$v_{\mathrm{1}}$]          {Windgeschwindigkeit vor Rotorebene}
     \acro{v2}       [$v_{\mathrm{2}}$]          {Windgeschwindigkeit in der Rotorebene}
     \acro{v3}       [$v_{\mathrm{3}}$]          {Windgeschwindigkeit hinter der Rotorebene}
+    \acro{vkrit}    [$v_{\mathrm{1,krit}}$]     {kritische Windgeschwindigkeit}
+    \acro{vdoti}    [$\dot{v}_{\mathrm{i}}$]    {Windgeschwindigkeitsänderung an Stelle i}
+    
+    % Y
+    \acro{yB}       [$y_{\mathrm{B}}$]          {Blattverbiegung}
+    \acro{yT}       [$y_{\mathrm{T}}$]          {Turmverbiegung}
+    
+    % Z
     \acro{z}        [$z$]                       {Anzahl der Rotorblätter eines Rotors}
-    \acro{ThetaP}   [$\Theta_{\mathrm{P}}$]     {Pitchwinkel}
+    
+    % ALPHA
+    \acro{alpha}    [$\alpha$]                  {Anstellwinkel}
+    \acro{alphaopt} [$\alpha_{\mathrm{opt}}$]   {optimaler Anstellwinkel}
+    
+    % BETA
+    \acro{beta}     [$\beta$]                   {Bauwinkel}
+    
+    % GAMMA
+    \acro{gamma}    [$\gamma$]                  {Anströmwinkel}
+    
+    % EPSILON
+    \acro{eps}      [$\epsilon$]                {Gleitzahl}
+    \acro{epsopt}   [$\epsilon_{\mathrm{opt}}$] {optimale Gleitzahl}
+    
+    % THETA
+    \acro{theta}    [$\theta$]                  {Pitchwinkel}
+    \acro{theta3}   [$\theta_{\mathrm{III}}$]   {Pitchwinkel Volllastbereich}
+    \acro{thetasoll}[$\theta_{\mathrm{soll}}$]  {Soll-Pitchwinkel}
+    
+    % LAMBDA
     \acro{lambda}   [$\lambda$]                 {Schnelllaufzahl}
     \acro{lambdaopt}[$\lambda_{\mathrm{opt}}$]  {optimale Schnelllaufzahl}
+    
+    % PI
+    \acro{pi}       [$\pi$]                     {Kreiszahl}
+    
+    % RHO
     \acro{rho}      [$\rho$]                    {Luftdichte}
     \acro{rhoi}     [$\rho_{\mathrm{i}}$]       {Luftdichte an Volumenstelle i}
+    \acro{pST}      [$p_{\mathrm{ST}}$]         {Staudruck}
     \acro{rho1}     [$\rho_{\mathrm{1}}$]       {Luftdichte an Volumenstelle 1}
     \acro{rho2}     [$\rho_{\mathrm{2}}$]       {Luftdichte an Volumenstelle 2}
-    \acro{rho3}     [$\rho_{\mathrm{3}}$]       {Luftdichte an Volumenstelle 3}
+    \acro{rho3}     [$\rho_{\mathrm{3}}$]       {Luftdichte an Volumenstelle 3}  
+    
+    % PHI
+    \acro{phiG}     [$\varphi_{\mathrm{G}}$]    {Generatorwinkel}
+    \acro{phiR}     [$\varphi_{\mathrm{R}}$]    {Rotorwinkel}
+    \acro{dotphiG}  [$\dot\varphi_{\mathrm{G}}$]{Generatorwinkelgeschwindigkeit}
+    \acro{dotphiR}  [$\dot\varphi_{\mathrm{R}}$]{Rotorwinkelgeschwindigkeit}
+    \acro{phiRtilde}[$\tilde{\varphi}_{\mathrm{R}}$]    {Rotorwinkel bezogen auf die Generatorseite des Getriebes}
+    
+    % OMEGA
     \acro{omega}    [$\omega$]                  {Winkelgeschwindigkeit}
     \acro{omegaG}   [$\omega_{\mathrm{G}}$]     {Generatorwinkelgeschwindigkeit}
     \acro{omegaR}   [$\omega_{\mathrm{R}}$]     {Ro\-tor\-win\-kel\-ge\-schwin\-dig\-keit}
-    \acro{omegadot} [$\dot \omega$]             {Winkelbeschleunigung}
-    \acro{phiG}     [$\varphi_{\mathrm{G}}$]    {Generator Winkel}
-    \acro{dotphiG}  [$\dot\varphi_{\mathrm{G}}$]{Generator Winkelgeschwindigkeit}
-    \acro{phiR}     [$\varphi_{\mathrm{R}}$]    {Rotor Winkel}
-    \acro{dotphiR}  [$\dot\varphi_{\mathrm{R}}$]{Rotor Winkelgeschwindigkeit}
-    \acro{phiRtilde}[$\tilde{\varphi}_{\mathrm{R}}$]    {Rotor Winkel bezogen auf die Generatorseite des Getriebes}
-    \acro{pi}       [$\pi$]                     {Kreiszahl}
-    \acro{pST}      [$p_{\mathrm{ST}}$]         {Staudruck}
-    \acro{cT}       [$c_{\mathrm{T}}$]          {Schubkraftbeiwert}
-    \acro{alpha}    [$\alpha$]                  {Anstellwinkel}
-    \acro{alphaopt} [$\alpha_{\mathrm{opt}}$]   {optimaler Anstellwinkel}
-    \acro{tflug}    [$t_{\mathrm{Flug}}$]       {Tiefe eines Tragflügels}
-    \acro{bflug}    [$t_{\mathrm{Flug}}$]       {Breite eines Tragflügels}
-    \acro{eps}      [$\epsilon$]                {Gleitzahl}
-    \acro{epsopt}   [$\epsilon_{\mathrm{opt}}$] {optimale Gleitzahl}
-    \acro{gamma}    [$\gamma$]                  {Anströmwinkel}
-    \acro{beta}     [$\beta$]                   {Bauwinkel}
-    \acro{kI}       [$k_{\mathrm{I}}$]          {Faktor für die Steuerung im unteren Teillastbereich, konstant}
-    \acro{komegaR}  [$k_{\omega\mathrm{R}}$]   {Linearisierungkoeffizient}
-    \acro{ktheta}   [$k_{\theta}$]     {Linearisierungkoeffizient}
-    \acro{kv}       [$k_{\mathrm{v}}$]          {Linearisierungkoeffizient}
+    \acro{omegaRist}[$\omega_{\mathrm{R,ist}}$] {Ist-Wert der Ro\-tor\-win\-kel\-ge\-schwin\-dig\-keit}
+    \acro{omegadot} [$\dot \omega$]             {Winkelbeschleunigung}    
+
     \end{acronym}
 \clearpage
 
@@ -473,9 +535,11 @@
 
 \include{4_modellierung_antriebsstrang}
 
-\include{5_regelung}
-
 \include{6_turm_blatt}
+
+\include{3_gesamtmodell}
+
+\include{5_regelung}
 
 \include{7_ausblick}
 
@@ -507,19 +571,6 @@ HTW-Logo in der Kopfzeile\par
 \bibitem[\the\Quellennummer]{SkriptSchulte}
 Skript Automation in regenerativen Energiesystemen\par
 Prof.\xspace Dr.\xspace -Ing.\xspace Horst Schulte
-
-\advance\Quellennummer by 1
-
-\bibitem[\the\Quellennummer]{LinBrandstaedter}
-Anleitung Linearisierung eines zeitinvarianten,\par
-nichtlinearen Zustandmodells\par
-Prof.\xspace Dr.\xspace -Ing.\xspace Heide Brandstädter
-
-\advance\Quellennummer by 1
-
-\bibitem[\the\Quellennummer]{RegelungBuss}
-Regelungs- und Steuerungstechnik: Polstellenverteilung\par
-Prof.\xspace Dr.\xspace -Ing.\xspace M. Buss
 
 \advance\Quellennummer by 1
 

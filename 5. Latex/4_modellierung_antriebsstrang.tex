@@ -1,4 +1,4 @@
-\section{Modell des Antriebsstranges} \label{modellierung_antriebsstrang}
+\section{Modellierung des Antriebsstranges} \label{modellierung_antriebsstrang}
 % Aaron
 
 Dieser Abschnitt befasst sich mit der Modellierung und Simulation des Antriebsstranges der Windturbine. Das Modell soll anschließend zusammen mit dem Modell des Turmes und des Blattes, sowie der Aerodynamik als Teilmodelle in Simulink zusammengeführt werden. \\
@@ -28,9 +28,9 @@ Der Antriebsstrang besteht dabei grundsätzlich aus einem Rotor (Blätter und Na
 \end{figure} % Teilmodell Antriebsstrang mit Ein- und Ausgangsparametern
 
 Zu erkennen sind das \ac{MG} und das \ac{MR} als Eingangsgrößen des Modells. Das \acl{MR} wird in der Gesamtsimulation später vom Modell der Aerodynamik bereitgestellt. Das \acl{MG} geht aus dem Generator-Umrichter-Modell hervor, in welchem auch die Regelung der Windkraftanlage umgesetzt ist. \\
-Als Ausgänge benötigt werden die \ac{omegaG} und die \ac{omegaR}. Erstere ist später ein Eingangsparameter des Generator-Umrichter-Modells und wird insbesondere für die Berechnung des \acl{MG} im Momentenregler benötigt. Die \acl{omegaR} ist ebenfalls ein Eingang des Generator-Umrichter-Modells sowie des Modells für die Aerodynamik. 
+Als Ausgänge werden die \ac{omegaG} und die \ac{omegaR} benötigt. Erstere ist später ein Eingangsparameter des Generator-Umrichter-Modells und wird insbesondere für die Berechnung des \acl{MG} im Momentenregler benötigt. Die \acl{omegaR} wird für die Berechnung der Stellgröße der beiden Regler für den oberen Teillastbereich und den Volllastbereich zurückgeführt. 
 
-\subsection{Modellierung des Antriebsstranges}
+\subsection{Modell des Antriebsstranges}
 
 Zunächst soll das Modell für den Antriebsstrang entwickelt werden, bevor es anschließend simulativ losgelöst in Simulink getestet und verifiziert werden kann. \autoref{fig:Bild3.2} zeigt modellhaft die Struktur des Antriebsstranges mitsamt der wirkenden Momente. Auf Basis der Abbildung erfolgt anschließend die Modellierung des Teilsystems.
 
@@ -92,41 +92,39 @@ Zunächst soll das Modell für den Antriebsstrang entwickelt werden, bevor es an
         \psarc[linecolor=darkgrey]{<-}(12.4,2.5){1}{-30}{30}
         \rput(13.2,3.3){\footnotesize \acs{MR}}
     \end{pspicture}
-   \caption[Modelldarstellung des Antriebsstranges]{Modellhafte des Antriebsstrangteilmodelles inklusive der wirkenden Momente}
+   \caption[Modelldarstellung des Antriebsstranges]{Modellhafte Darstellung des Antriebsstrangteilmodelles inklusive der wirkenden Momente}
    \label{fig:Bild3.2}
 \end{figure} % Modelldarstellung des Antriebsstranges inkl. Momente
 
-Die Modellbildung erfolgt über die Momentenbilanzierung. Diese besagt, dass die Summe aller wirkenden Momente gleich Null ist. Zunächst lässt sich die Summe aller Momente allgemein berechnen zu
-
+Die Modellbildung erfolgt über die Momentenbilanzierung. Diese besagt, dass die Summe aller wirkenden Momente gleich Null ist. Zunächst lässt sich die Summe aller Momente allgemein berechnen zu:
 \begin{align}
     \sum M = J \cdot \ddot\varphi.
     \label{eq:Gleichung3.1}
 \end{align}
-
+\newline
 Nachfolgend wird eine Bilanzgleichung für den Generator (high speed shaft) und den Rotor (slow speed shaft) aufgestellt. Erstere ist in \autoref{eq:Gleichung3.2} und Letzere in \autoref{eq:Gleichung3.3} dargestellt.
-
 \begin{align}
     \label{eq:Gleichung3.2}
    \acs{JR} \cdot \ddot{\varphi}_{\mathrm{R}} + \tilde{M}_{d_s} + \tilde{M}_{k_s} - \acs{MR} &= 0 \\
    \label{eq:Gleichung3.3}
    \acs{JG} \cdot \ddot{\varphi}_{\mathrm{G}} - {M}_{d_s} - {M}_{k_s} + \acs{MG} &= 0
 \end{align}
-
+\newline
 Bei $\tilde{M}_{d_s}$ handelt es sich um das Moment, welches sich aus dem \ac{ds} ergibt. Es wird berechnet zu
 
 \begin{align}
    \tilde{M}_{d_s} = \acs{ds} \cdot \left( \dot\varphi_{\mathrm{G}} - \tilde{\dot\varphi}_{\mathrm{R}}\right).
    \label{eq:Gleichung3.4}
 \end{align}
-
-Bei $\tilde{M}_{k_s}$ wiederum handelt es sich um das Moment, welches sich aus dem \ac{ks} ergibt. Dieses wird berechnet zu
+\newpage
+Bei $\tilde{M}_{k_s}$ wiederum handelt es sich um das Moment, welches sich aus dem \ac{ks} ergibt. Dieses wird berechnet zu:
 
 \begin{align}
    \tilde{M}_{k_s} = \acs{ks} \cdot \left( \varphi_{\mathrm{G}} - \tilde{\varphi}_{\mathrm{R}}\right).
    \label{eq:Gleichung3.5}
 \end{align}
-
-Da es sich bei beiden Momenten um bezogene Größen (bezogen auf die Schnelle Welle) handelt, müssen diese noch umgerechnet werden. Dies geschieht über die \ac{ng}. $M_{d_s}$ und $M_{k_s}$ folgen somit zu
+\newline
+Da es sich bei beiden Momenten um bezogene Größen (bezogen auf die schnelle Welle) handelt, müssen diese noch umgerechnet werden. Dies geschieht über die \ac{ng}. $M_{d_s}$ und $M_{k_s}$ folgen somit zu
 
 \begin{align}
     \label{eq:Gleichung3.6}
@@ -134,15 +132,15 @@ Da es sich bei beiden Momenten um bezogene Größen (bezogen auf die Schnelle We
    \label{eq:Gleichung3.7}
    M_{k_s} &= \acs{ng} \cdot \tilde{M}_{k_s}.
 \end{align}
-
+\newline
 Auch bei $\tilde{\dot\varphi}_{\mathrm{R}}$ muss das Getriebeübersetzungsverhältnis wie folgt berücksichtigt werden:
 
 \begin{align}
     \tilde{\dot\varphi}_{\mathrm{R}} = \acs{ng} \cdot \acs{phiR}
     \label{eq:Gleichung3.8}
 \end{align}
-
-Somit kann der Antriebsstrang abschließend modelliert werden zu
+\newline
+Somit kann der Antriebsstrang abschließend modelliert werden zu:
 
 \begin{equation}
     \label{eq:Gleichung3.9}
@@ -157,7 +155,7 @@ Somit kann der Antriebsstrang abschließend modelliert werden zu
 
 \subsection{Simulative Modellverifikation des Antriebsstranges}
 
-In diesem Unterkapitel wird das zuvor entwickelte Modell in Simulink implementiert und getestet. Auf eine Vollständige Verifikation wird an dieser Stelle jedoch verzichtet, da diese erst nach der Integration in das Gesamtsystem (mit allen anderen Teilmodellen) erfolgen kann. Geprüft wird jedoch, wie sich die Winkelgeschwindigkeiten des Rotors und des Generators nach einer sprunghaften Anregung verhalten. Ebenfalls verifiziert wird, inwiefern eine Torsion der Antriebswelle auftritt, wenn sich das \acl{MG} und das \acl{MR} sprunghaft zeitversetzt ändern. \\
+In diesem Unterkapitel wird das zuvor entwickelte Modell in Simulink implementiert und getestet. Auf eine vollständige Verifikation wird an dieser Stelle jedoch verzichtet, da diese erst nach der Integration in das Gesamtsystem (mit allen anderen Teilmodellen) erfolgen kann. Geprüft wird jedoch, wie sich die Winkelgeschwindigkeiten des Rotors und des Generators nach einer sprunghaften Anregung verhalten. Ebenfalls wird verifiziert, inwiefern eine Torsion der Antriebswelle auftritt, wenn sich das \acl{MG} und das \acl{MR} sprunghaft zeitversetzt ändern. \\
 
 \begin{figure}[H]
    \centering
@@ -166,10 +164,10 @@ In diesem Unterkapitel wird das zuvor entwickelte Modell in Simulink implementie
    \label{fig:Bild3.3}
 \end{figure}
 
-\autoref{fig:Bild3.3} zeigt die Blockstruktur, welche in Simulink umgesetzt wurde. Der Funktionsblock in der Mitte der Abbildung enthält die Modellgleichungen, welche zuvor in \autoref{eq:Gleichung3.1} und \autoref{eq:Gleichung3.1} hergeleitet wurden. Eingangsseitig wird ein Sprung von \acs{MG} \bzw \acs{MR} eingeprägt. Ersterer setzt nach \SI{15}{s} ein, Zweiterer bereits nach \SI{5}{s}. Ausgangsseitig werden durch die Nutzung von Integratoren die Winkelgeschwindigkeiten \acs{omegaR} und \acs{omegaG} zurückgegeben. Für die Modellverifikation wurde noch ein weiterer Ausgang hinzugefügt, welcher die Differenz des \ac{phiR} und des \ac{phiG} bereitstellt. \\
+\autoref{fig:Bild3.3} zeigt die Blockstruktur, welche in Simulink umgesetzt wurde. Der Funktionsblock in der Mitte der Abbildung enthält die Modellgleichungen, welche zuvor in \autoref{eq:Gleichung3.9} und \autoref{eq:Gleichung3.10} hergeleitet wurden. Eingangsseitig wird ein Sprung von \acs{MG} \bzw \acs{MR} eingeprägt. Ersterer setzt nach \SI{15}{s} ein, Zweiterer bereits nach \SI{5}{s}. Ausgangsseitig werden durch die Nutzung von Integratoren die Winkelgeschwindigkeiten \acs{omegaR} und \acs{omegaG} zurückgegeben. Für die Modellverifikation wurde noch ein weiterer Ausgang hinzugefügt, welcher die Differenz des \ac{phiR} und des \ac{phiG} bereitstellt. \\
 
 In \autoref{fig:Bild3.4} ist klar zu erkennen, dass durch die Einprägung des Momentensprunges auf den Rotor die Winkelgeschwindigkeit der Welle annähernd linear ansteigt. Dies zeigt sich sowohl auf Seiten des Rotors als auch auf Seiten des Generators. Der Kurvenverlauf beider Winkelgeschwindigkeiten ist annähernd identisch. Der Unterschied um zwei Zehnerpotenzen ergibt sich aus der \acf{ng}, welche bei \ca 100 (97) liegt.\\
-Der generatorseitige Momentensprung zeigt sich in \autoref{fig:Bild3.4} besonders gut in der Betrachtung der \ac{dotphiG}. Es kommt zu einem Schwingvorgang, der nach etwas über \SI{5}{s} wieder ausgeglichen ist. Durch die Elastizität der Welle ist der Momentensprung am Generator rotorseitig abgedämpft. Die \ac{dotphiR} schwing nur leicht.
+Der generatorseitige Momentensprung zeigt sich in \autoref{fig:Bild3.4} besonders gut in der Betrachtung der \ac{dotphiG}. Es kommt zu einem Schwingvorgang, der nach etwas über \SI{5}{s} wieder ausgeglichen ist. Durch die Elastizität der Welle ist der Momentensprung am Generator rotorseitig abgedämpft. Die \ac{dotphiR} schwingt nur leicht.
 
 \begin{figure}[H]
    \centering
@@ -178,7 +176,7 @@ Der generatorseitige Momentensprung zeigt sich in \autoref{fig:Bild3.4} besonder
    \label{fig:Bild3.4}
 \end{figure}
 
-\autoref{fig:Bild3.5} zeigt die Differenz zwischen Rotorwinkel (\acs{phiR}) und Generatorwinkel (\ac{phiG}). Diese gibt eine Aussage darüber, inwiefern es zu einer Torsion der Antriebswelle kommt. Zu erkennen ist, dass nach \SI{5}{s} eine erste Torsion auftritt, die sich nach kurzem Schwingen auf einen stationären Wert von rund einem Millionstel eines Grades einpegelt. Nach dem generatorseitigen Momentensprung (bei \SI{15}{s} kommt es erneut zu einem Schwingvorgang in der Wellentorsion. Da das eingeprägte Moment signifikant größer ist, ist die Schwingungsamplitude ebenfalls deutlich größer als zuvor beim rotorseitigen Momentensprung. Nach \ca \SI{10}{s} ist auch dieser Schwingvorgang abgeschlossen und ein stationärer Endwert von rund einem Einhunderttausendstel Grad wird erreicht. \\
+\autoref{fig:Bild3.5} zeigt die Differenz zwischen Rotorwinkel (\acs{phiR}) und Generatorwinkel (\ac{phiG}). Diese gibt eine Aussage darüber, inwiefern es zu einer Torsion der Antriebswelle kommt. Es ist zu erkennen, dass nach \SI{5}{s} eine erste Torsion auftritt, die sich nach kurzem Schwingen auf einen stationären Wert von rund einem Millionstel eines Grades einpegelt. Nach dem generatorseitigen Momentensprung (bei \SI{15}{s} kommt es erneut zu einem Schwingvorgang in der Wellentorsion. Da das eingeprägte Moment signifikant größer ist, ist die Schwingungsamplitude ebenfalls deutlich größer als zuvor beim rotorseitigen Momentensprung. Nach \ca \SI{10}{s} ist auch dieser Schwingvorgang abgeschlossen und ein stationärer Endwert von rund einem Einhunderttausendstel Grad wird erreicht. \\
 Es kann zusammenfassend argumentiert werden, dass die Simulationsergebnisse plausibel und hinreichend genau sind, um das Antriebsstrangmodell als Teilmodell der Simulation und Regelung der Windenergieanlage einsetzen zu können.
 
 \begin{figure}[H]
