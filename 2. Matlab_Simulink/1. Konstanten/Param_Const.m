@@ -3,7 +3,7 @@ function param_const = Param_Const()
     % SONSTIGE
     param_const.rho = 1.225;                                % Luftdichte [kg/m³]
     % param_const.D = 0.55;                                 % Dämpfung
-    param_const.T_Aus = 15;                                 % Ausregelzeit [s]
+    param_const.T_Aus = 11;                                 % Ausregelzeit [s] (15)
     % param_const.omega_0 = 4.189;
     param_const.omega_r_Nenn = 12.1/60*2*pi;                % Nennwinkelgeschwindigkeit [rad/s]
     param_const.v_krit = 25;                                % kritische Windgeschwindigkeit [m/s]
