@@ -35,7 +35,7 @@ Bevor eine Regelung für die WEA umgesetzt werden kann, müssen zunächst einige
 
 Für die Regelung der WEA wird von einem Standardregelkreis ausgegangen, wie in \autoref{fig:Abbildung4.1} dargestellt. Wobei für den unteren Teillastbereich ein anderes Konzept verwendet wird und an sich keinen Standardregelkreis darstellt, was in Kapitel 4.2 noch genauer beschrieben wird.
 \\
-Als Stellgröße u eignet sich das Generatormoment \acs{MG} und der Pitchwinkel \acs{theta}. Da die Windgeschwindigkeit nur sehr ungenau messtechnisch erfasst werden kann und ein stochastisches Verhalten aufweist, eignet sich diese Größe als Störgröße z. Hingegen kann die Rotordrehzahl \acs{nR} sehr gut messtechnisch erfasst werden, da die Rotorblätter als Anemometer dienen. Daher eignet sich diese Größe gut als Führungs- und Regelgröße w und y. Die Regler- und Streckenübertragungsfunktionen des Führungs- und Störverhaltens werden für den oberen Teillastbereich und Volllastbereich separat mithilfe der Superposition ermittelt. Für die Regelung des Generatormomentes \acs{MG} im oberen Teillastbereich und für die Regelung des Pitchwinkels \acs{theta} im Volllastbereich wird lediglich das Führungsverhalten betrachtet.
+Als Stellgröße u eignet sich das Generatormoment \acs{MG} und der Pitchwinkel \acs{theta}. Da die Windgeschwindigkeit nur sehr ungenau messtechnisch erfasst werden kann und ein stochastisches Verhalten aufweist, eignet sich diese Größe als Störgröße z. Hingegen kann die Rotordrehzahl \acs{nR} sehr gut messtechnisch erfasst werden, da die Rotorblätter als Anemometer dienen. Daher eignet sich diese Größe gut als Führungs- und Regelgröße w und y. Die Regler- und Streckenübertragungsfunktionen des Führungs- und Störverhaltens werden für den oberen Teillastbereich und Volllastbereich separat mithilfe der Superposition ermittelt. Für die Regelung des Generatormomentes \acs{MG} im oberen Teillastbereich und für die Regelung des Pitchwinkels \acs{theta} im Volllastbereich wird lediglich das Störverhalten betrachtet.
 
 \begin{figure}[H]
     \centering
@@ -158,7 +158,7 @@ Die Berechnung der Schnelllaufzahlen \acs{lambda}$_{,II(I),i}$ für den jeweilig
 %chris + Aaron
 \subsection{Oberer Teillastbereich}
 Laut \autoref{tab:Tabelle4.1} ist für den oberen Teillastbereich ebenfalls eine Leistungsoptimierung notwendig, da die Windleistung \acs{PW} noch unterhalb oder gleich der Generatornennleistung \acs{PGNenn} ist. Sofern die Rotordrehzahl \acs{nR} gleich der Generatornenndrehzahl \acs{nGNenn} ist, ist es nicht mehr möglich diese an die Windgeschwindigkeit anzupassen. Dadurch ergibt sich ein schlechtes Anströmverhältnis was einen nicht optimalen Leistungsbeiwert \acs{cP} zur Folge hat. Es wird zwar nicht mehr das Leistungsmaximum aus der zur Verfügung stehenden Windleistung entnommen, dennoch wird eine Leistungssteigerung mit ansteigender Windgeschwindigkeit \acs{v1} durch eine geeignete Regelung erzielt.\\
-Für die Reglerauslegung des oberen Teillastbereiches wird eine algebraische Auslegung im Frequenzbereich durchgeführt. Zur Erfüllung der Hauptziele werden nun sogenannte Reglerkoeffizienten aus den vorher berechneten Linearisierungskoeffizienten ermittelt, welche später eine Generatormomentsollwertvorgabe $M_{G,soll}$ für den Antriebsstrang darstellen. Zur Bestimmung der Reglerkoeffizienten wird ein Referenzmodell herangezogen, welches das zu erwartendene Systemverhalten der Hauptziele des Reglers widerspiegelt. Dieses Referenzmodell wird anschließend mit dem physikalischen Modell, basierend auf den physikalischen Vorbetrachtungen der WEA, verglichen und überprüft, ob das gewünschte und resultierende Modell das gleiche Systemverhalten aufweist. Dieses Verfahren ist für das Führungs- und Störverhalten anzuwenden, wobei für den weiteren Verlauf der Arbeit sich auf das Führungsverhalten des Systems fokussiert wird. Auf Grundlage dessen, wird mittels Koeffizientenvergleich die Reglerkoeffizienten algebraisch berechnet. Auf die Herleitungen soll nicht weiter eingegangen werden. Damit ergibt sich für die Berechnung der Reglerkoeffizienten im oberen Teillastbereich folgende Gleichungen:
+Für die Reglerauslegung des oberen Teillastbereiches wird eine algebraische Auslegung im Frequenzbereich durchgeführt. Zur Erfüllung der Hauptziele werden nun sogenannte Reglerkoeffizienten aus den vorher berechneten Linearisierungskoeffizienten ermittelt, welche später eine Generatormomentsollwertvorgabe $M_{G,soll}$ für den Antriebsstrang darstellen. Zur Bestimmung der Reglerkoeffizienten wird ein Referenzmodell herangezogen, welches das zu erwartendene Systemverhalten der Hauptziele des Reglers widerspiegelt. Dieses Referenzmodell wird anschließend mit dem physikalischen Modell, basierend auf den physikalischen Vorbetrachtungen der WEA, verglichen und überprüft, ob das gewünschte und resultierende Modell das gleiche Systemverhalten aufweist. Dieses Verfahren ist für das Führungs- und Störverhalten anzuwenden, wobei für den weiteren Verlauf der Arbeit sich auf das Störverhalten des Systems fokussiert wird. Auf Grundlage dessen, wird mittels Koeffizientenvergleich die Reglerkoeffizienten algebraisch berechnet. Auf die Herleitungen soll nicht weiter eingegangen werden. Damit ergibt sich für die Berechnung der Reglerkoeffizienten im oberen Teillastbereich folgende Gleichungen:
 \begin{align}
     k_{P,W,II} &= \frac{3 \cdot J}{T_{Aus} \cdot i_G}   \label{eq:Gleichung4.11}\\
     k_{I,W,II} &= \frac{3 \cdot k_{\omega\mathrm{R,II,i}}}{T_{Aus} \cdot i_G}\label{eq:Gleichung4.12}
@@ -175,7 +175,7 @@ In Matlab werden nun die Reglerkoeffizienten einmalig für jeden Arbeitspunkt im
 
 \subsection{Volllastbereich}
 Laut \autoref{tab:Tabelle4.1} ist für den Volllastbereich eine Leistungsbegrenzung vorzusehen, da nun die Windleistung \acs{PW} oberhalb der Generatornennleistung \acs{PGNenn} liegt. Durch das Pitchen der Blätter wird bewusst das Anströmverhältnis verschlechtert, denn das Betreiben der WEA darf nicht weit über Nenndrehzahl erfolgen. Dies führt zur Beschädigung oder gar Zerstörung der WEA. Das Pitchen ermöglicht jedoch bei ansteigender Windleistung (\acs{PW} > \acs{PGNenn}) weiterhin eine konstante Generatornennleistung \acs{PGNenn} zu erzielen. Der Pitchwinkel \acs{theta} spielt nun für die Reglerauslegung eine entscheidene Rolle.\\
-Das Vorgehen zur Bestimmung der Reglerkoeffizienten ist gleich dem Vorgehen aus dem oberen Teillastbereich. Das Verfahren ist hier ebenfalls auf das Führungs- und Störverhalten anzuwenden, jedoch wird beim Volllastbereich lediglich das Führungsverhalten betrachet. Die folgenden Gleichungen zeigen die Berechnungen der entsprechenden Reglerkoeffizienten. Der Unterschied hier ist, das der P- und I-Anteil des Reglers von $k_\theta$ abhängig ist. Im Volllastbereich gilt es den Pitchwinkel so zu regeln, dass das Generatormoment \acs{MG} = const. bleibt.
+Das Vorgehen zur Bestimmung der Reglerkoeffizienten ist gleich dem Vorgehen aus dem oberen Teillastbereich. Das Verfahren ist hier ebenfalls auf das Führungs- und Störverhalten anzuwenden, jedoch wird beim Volllastbereich lediglich das Störverhalten betrachet. Die folgenden Gleichungen zeigen die Berechnungen der entsprechenden Reglerkoeffizienten. Der Unterschied hier ist, das der P- und I-Anteil des Reglers von $k_\theta$ abhängig ist. Im Volllastbereich gilt es den Pitchwinkel so zu regeln, dass das Generatormoment \acs{MG} = const. bleibt.
 
 \begin{align}
     k_{P,W,III} &= \frac{3 \cdot J}{T_{Aus} \cdot k_\theta}   \label{eq:Gleichung4.13}\\
@@ -347,7 +347,7 @@ Dabei werden verschiedene Windgeschwindigkeiten beispielhaft simuliert. Begonnen
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_low.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_low.pdf}}
    \caption[Simulationsergebnisse langsamer konstanter Wind]{Simulationsergebnisse bei einem eingeprägten konstanten Wind von $\SI{9}{\frac{m}{s}}$}
    \label{fig:Bild4.7}
 \end{figure}
@@ -359,7 +359,7 @@ Insbesondere ist in der unteren Hälfte der Abbildung die Einteilung der Kurven 
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_medium.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_medium.pdf}}
    \caption[Simulationsergebnisse moderater konstanter Wind]{Simulationsergebnisse bei einem eingeprägten konstanten Wind von $\SI{10.7}{\frac{m}{s}}$}
    \label{fig:Bild4.8}
 \end{figure}
@@ -371,7 +371,7 @@ Der Pitchwinkel im unteren Bereich der Abbildung verweilt zunächst bis zum Umsc
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_high.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_high.pdf}}
    \caption[Simulationsergebnisse schneller konstanter Wind]{Simulationsergebnisse bei einem eingeprägten konstanten Wind von $\SI{14}{\frac{m}{s}}$}
    \label{fig:Bild4.9}
 \end{figure}
@@ -381,7 +381,7 @@ Zunächst wird die Generatorwinkelgeschwindigkeit betrachtet. Es fällt auf, das
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_vgl.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/const_wind_vgl.pdf}}
    \caption[Vergleich bei Verschiedenen Windgeschwindigkeiten]{Vergleich der Simulationsergebnisse bei verschiedenen konstanten Windgeschwindigkeiten zwischen $\SI{8}{\frac{m}{s}}$ bis $\SI{20}{\frac{m}{s}}$}
    \label{fig:Bild4.10}
 \end{figure}
@@ -397,7 +397,7 @@ Als nächster Windtyp werden Windböen getestet. Es tritt genau eine Böe bei ei
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/gust_low.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/gust_low.pdf}}
    \caption[Windböensimulation bei langsamem Wind]{Simulationsergebnisse für einen konstanten Wind mit $v_1 = \SI{8}{\frac{m}{s}}$ und einer Windböe mit einer Amplitude bei $\SI{11.5}{\frac{m}{s}}$}
    \label{fig:Bild4.11}
 \end{figure}
@@ -406,7 +406,7 @@ Bei \autoref{fig:Bild4.12} ist im Gegensatz zur vorangegangenen Grafik kein Unte
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/gust_high.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/gust_high.pdf}}
    \caption[Windböensimulation bei schnellem Wind]{Simulationsergebnisse für einen konstanten Wind mit $v_1 = \SI{14}{\frac{m}{s}}$ und einer Windböe mit einer Amplitude bei $\SI{19}{\frac{m}{s}}$}
    \label{fig:Bild4.12}
 \end{figure}
@@ -418,7 +418,7 @@ Im Folgenden soll das WEA-Modell inklusive der Regelstruktur gegen turbulente Wi
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_low.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_low.pdf}}
    \caption[Simulationsergebnisse bei langsamen turbulenten Winden]{Simulationsergebnisse bei turbulenten Winden mit einer mittleren Windgeschwindigkeit von $\SI{8}{\frac{m}{s}}$}
    \label{fig:Bild4.13}
 \end{figure}
@@ -427,7 +427,7 @@ In \autoref{fig:Bild4.14} ist ein ausreichend starker Wind dargestellt, so dass 
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_medium.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_medium.pdf}}
    \caption[Simulationsergebnisse bei moderaten turbulenten Winden]{Simulationsergebnisse bei turbulenten Winden mit einer mittleren Windgeschwindigkeit von $\SI{16}{\frac{m}{s}}$}
    \label{fig:Bild4.14}
 \end{figure}
@@ -436,7 +436,7 @@ Bei \autoref{fig:Bild4.15} soll das Verhalten der Anlage bei turbulenten Winden 
 
 \begin{figure}[H]
    \centering
-   \fbox{\includegraphics[width=1\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_high.pdf}}
+   \fbox{\includegraphics[width=0.98\textwidth]{Bilder/Kapitel 6/Reglervalidierung/turb_high.pdf}}
    \caption[Simulationsergebnisse bei schnellen turbulenten Winden]{Simulationsergebnisse bei turbulenten Winden mit einer mittleren Windgeschwindigkeit von $\SI{20}{\frac{m}{s}}$}
    \label{fig:Bild4.15}
 \end{figure}

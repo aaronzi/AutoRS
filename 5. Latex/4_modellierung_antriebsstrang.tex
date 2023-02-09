@@ -27,8 +27,8 @@ Der Antriebsstrang besteht dabei grundsätzlich aus einem Rotor (Blätter und Na
    \label{fig:Bild3.1}
 \end{figure} % Teilmodell Antriebsstrang mit Ein- und Ausgangsparametern
 
-Zu erkennen sind das \ac{MG} und das \ac{MR} als Eingangsgrößen des Modells. Das \acl{MR} wird in der Gesamtsimulation später vom Modell der Aerodynamik bereitgestellt. Das \acl{MG} geht aus dem Generator-Umrichter-Modell hervor, in welchem auch die Regelung der Windkraftanlage umgesetzt ist. \\
-Als Ausgänge werden die \ac{omegaG} und die \ac{omegaR} benötigt. Erstere ist später ein Eingangsparameter des Generator-Umrichter-Modells und wird insbesondere für die Berechnung des \acl{MG} im Momentenregler benötigt. Die \acl{omegaR} wird für die Berechnung der Stellgröße der beiden Regler für den oberen Teillastbereich und den Volllastbereich zurückgeführt. 
+Zu erkennen sind das \ac{MG} und das \ac{MR} als Eingangsgrößen des Modells. Das \acl{MR} wird in der Gesamtsimulation später vom Modell der Aerodynamik (inkludiert in der Regel-/Steuereinheit) bereitgestellt. Das \acl{MG} geht ebenfalls aus der Steuereinheit hervor, in welcher auch die Momentenregelung der Windkraftanlage umgesetzt ist. \\
+Als Ausgänge werden die \ac{omegaG} und die \ac{omegaR} benötigt. Erstere wird für die Berechnung Abgeleiteter Größen wie \zB für die \ac{PR} benötigt. Die \acl{omegaR} wird für die Berechnung der Stellgröße der beiden Regler für den oberen Teillastbereich und den Volllastbereich zurückgeführt. 
 
 \subsection{Modell des Antriebsstranges}
 
