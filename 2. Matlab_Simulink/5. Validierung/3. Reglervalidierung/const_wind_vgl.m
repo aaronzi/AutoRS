@@ -56,9 +56,9 @@ function const_wind_vgl()
     % omega_g, P_g, M_G, state
     subplot(3,1,1)
     plot(t_vec,vec_omega_g,'LineWidth',2)
-    ylabel('Generatordrehzahl $\omega_{\mathrm{g}}$ [$\frac{rad}{s}$]','interpreter','latex')
+    ylabel('Generatorwinkelgeschwindigkeit $\omega_{\mathrm{g}}$ [$\frac{rad}{s}$]','interpreter','latex')
     xlabel('Zeit t [s]','interpreter','latex')
-    title('Generatordrehzahl der WEA')
+    title('Generatorwinkelgeschwindigkeit der WEA')
     legend(legendString(1,:),'Location','northwest')
     grid on
 

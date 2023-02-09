@@ -43,12 +43,12 @@ function const_wind_medium()
     subplot(2,1,1)
     yyaxis left
     plot(t_vec,vec_omega_g,'LineWidth',2)
-    ylabel('Generatordrehzahl $\omega_{\mathrm{g}}$ [$\frac{rad}{s}$]','interpreter','latex')
+    ylabel('Generatorwinkelgeschwindigkeit $\omega_{\mathrm{g}}$ [$\frac{rad}{s}$]','interpreter','latex')
     yyaxis right
     plot(t_vec,vec_P_G,'LineWidth',2)
     ylabel('Generatorleistung $P_{\mathrm{G}}$ [$W$]','interpreter','latex')
     xlabel('Zeit t [s]','interpreter','latex')
-    title('Generatordrehzahl und -Leistung der WEA')
+    title('Generatorwinkelgeschwindigkeit und -Leistung der WEA')
     grid on
 
     subplot(2,1,2)

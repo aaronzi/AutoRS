@@ -15,7 +15,7 @@ function Regler_Validierung()
     turb_high();
 
     %% Wind-Stufen
-    step_medium();
+    wind_steps();
 
     %% Validierung der Regelziele
     moment_drehzahl_kennfeld();
